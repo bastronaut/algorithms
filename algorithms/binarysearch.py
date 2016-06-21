@@ -21,13 +21,14 @@ for num in range(0, 1000):
         word += alphabet[nr]
     words.append(word)
 
-findword = "a"
+findword = "xfdskjfsdhjk"
 words.append(findword)
-
 sortedwords = sorted(words)
 
-
 def binarysearch(array, findword):
+    if len(array) <= 0:
+        print 'array contains no elements'
+        return
     high = len(sortedwords) - 1
     low = 0
     currentlocation = ((high-low)/2) + low
@@ -46,8 +47,28 @@ def binarysearch(array, findword):
             high = currentlocation
             currentlocation = ((high-low)/2) + low
 
-# passes an array that is constantly split until it finds it
+def recursivebinarysearch(array, findword, upperbound, lowerbound):
+    if len(array) <= 0:
+        print 'array contains no elements'
+        return
+    if upperbound <= 0:
+        print 'item:', findword, 'not found in array'
+        return
+
+    currentlocation = ((upperbound-lowerbound)/2)+lowerbound
+    print 'testing at location:', currentlocation, upperbound, lowerbound
+    if array[currentlocation] == findword:
+        print 'found the word: ', findword, ' at location: ', currentlocation
+    elif array[currentlocation] < findword:
+        recursivebinarysearch(array, findword, upperbound, currentlocation)
+    elif array[currentlocation] > findword:
+        recursivebinarysearch(array, findword, currentlocation, lowerbound)
+
+# passes an array that is constantly split until its search completes
 def recursivesplitbinarysearch(array, findword):
+    if len(array) <= 0:
+        print 'array contains no elements, findword:', findword, 'not in array'
+        return
     location = len(array)/2
     print 'array is now size:', len(array),' testing at location: ', location, array[location]
     if findword == array[location]:
@@ -58,4 +79,6 @@ def recursivesplitbinarysearch(array, findword):
     elif findword < array[location]:
         recursivesplitbinarysearch(array[:location], findword)
 
+binarysearch(sortedwords, findword)
+recursivebinarysearch(sortedwords, findword, len(sortedwords), 0)
 recursivesplitbinarysearch(sortedwords, findword)

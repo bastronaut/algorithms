@@ -13,19 +13,15 @@ public class BinarySearch {
 
     public static int Search(int key, int[] orderedInts, int high, int low, int nrofsplits) {
         int mid = ((high - low) / 2) + low;
+        if (high < low) return -1;
         if (key == orderedInts[mid]) {
             System.out.println("Found "+ key + " at index: " + mid + " after " + nrofsplits + " splits.");
             return mid;
+        } else if (key > orderedInts[mid]) {
+            return Search(key, orderedInts, high, mid, nrofsplits + 1);
+        } else  {
+            return Search(key, orderedInts, mid, low, nrofsplits + 1);
         }
-        else if (key > orderedInts[mid]) {
-            Search(key, orderedInts, high, mid, nrofsplits + 1);
-        } else if ( key < orderedInts[mid]) {
-            Search(key, orderedInts, mid, low, nrofsplits + 1);
-        } else {
-            System.out.println(key + " is not present");
-            return -1;
-        }
-        return -1;
     }
 
     public static void testBinarySearch(int key, int n) {
@@ -45,6 +41,5 @@ public class BinarySearch {
 
     public static void main(String args[]) {
         testBinarySearch(134, 500);
-        
     }
 }

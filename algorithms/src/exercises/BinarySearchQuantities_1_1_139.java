@@ -1,5 +1,7 @@
 package exercises;
 
+import algorithms.BinarySearch;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,46 +16,36 @@ import java.util.Random;
  * value of N
  */
 public class BinarySearchQuantities_1_1_139 {
-    algorithms.BinarySearch bs = new algorithms.BinarySearch();
+
+    BinarySearch bs = new algorithms.BinarySearch();
     private HashMap<Integer, Integer> doubleOccurrences = new HashMap<>();
 
-    private static int[] buildNSizedArray(int nExponant) {
+    private static int[] buildOrderedArray(int nExponant) {
         int[] orderedInts = new int[(int) Math.pow(10, nExponant)];
         Random rand = new Random();
 
         for (int i = 0; i < orderedInts.length -1; i++) {
-            int randomNum = 100000 + rand.nextInt((999999-100000) +1); // random six digit nr over 100000
-            orderedInts[i] = randomNum;
+            orderedInts[i] = 100000 + rand.nextInt((999999-100000) +1); // random six digit nr over 100000
         }
         Arrays.sort(orderedInts);
         return orderedInts;
     }
 
     private void findDoubleOccurrences(int[] firstArray, int[] secondArray, int nExponant) {
-        int currentCount = 0;
+        int count = 0;
         for (int i = 0; i< firstArray.length-1; i++) {
             if (bs.Search(firstArray[i], secondArray) != -1) {
-                currentCount = getOrDefault(doubleOccurrences, nExponant);
-                doubleOccurrences.put(nExponant, currentCount +1);
-//                System.out.println("Found double occurrence for: "+ i);
+                count++;
             }
         }
-    }
-
-    private static int getOrDefault(Map<Integer, Integer> map, int key) {
-        int value;
-        try {
-            return map.get(key);
-        } catch (NullPointerException e) {
-            return 0;
-        }
+        doubleOccurrences.put(nExponant, count +1);
     }
 
     public void runTrial(int nMin, int nMax) {
-        if (nMin > nMax || nMin == nMax) { return; }
+        if (nMin > nMax || nMin < 0 || nMax < 0) { return; }
         for (int n = nMin; n <= nMax; n++) {
-            int[] firstArray = buildNSizedArray(n);
-            int[] secondArray = buildNSizedArray(n);
+            int[] firstArray = buildOrderedArray(n);
+            int[] secondArray = buildOrderedArray(n);
             findDoubleOccurrences(firstArray, secondArray, n);
         }
     }

@@ -1,13 +1,14 @@
 package exercises;
 
-import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
+
+import static java.lang.Integer.parseInt;
 import static org.junit.Assert.*;
+
 
 /**
  * Exercise 1.1.139, page 62
@@ -18,7 +19,7 @@ import static org.junit.Assert.*;
  * value of N
  */
 public class BinarySearchQuantities_1_1_139Test {
-    @Test
+    @org.junit.Test
     public void runTrial() throws Exception {
         BinarySearchQuantities_1_1_139 BSQ = new BinarySearchQuantities_1_1_139();
         final int T = 1; // number of times to run trial
@@ -27,12 +28,15 @@ public class BinarySearchQuantities_1_1_139Test {
         for (int i = 0; i < T; i++) {
             BSQ.runTrial(nMin, nMax);
         }
-        HashMap results = BSQ.getDoubleOccurrences();
-        printResultTable(results);
+        HashMap<Integer, Integer> results = BSQ.getDoubleOccurrences();
+        printResultTable(results, nMax-nMin);
+        results.forEach((k, v) -> assertTrue(v > 0));
+        assertTrue(results.size() == (nMax - nMin + 1) );
     }
 
-    public void printResultTable(HashMap<Integer, Integer> quantities) {
-        System.out.println("N\toccurrences\n---------------");
-        quantities.forEach((k, v) -> System.out.println("10^" + k + "\t" + v));
+
+    public void printResultTable(HashMap<Integer, Integer> quantities, int n) {
+        System.out.println("N\toccurrences\taverage\n---------------------------");
+        quantities.forEach((k, v) -> System.out.println("10^" + k + "\t" + v + "\t\t" + (float)v/n));
     }
 }

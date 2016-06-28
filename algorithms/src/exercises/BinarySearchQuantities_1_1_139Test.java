@@ -21,19 +21,18 @@ public class BinarySearchQuantities_1_1_139Test {
     @Test
     public void runTrial() throws Exception {
         BinarySearchQuantities_1_1_139 BSQ = new BinarySearchQuantities_1_1_139();
-        final int T = 5; // number of times to run trial
-//        Random rand = new Random();
-//        int randomNum = 100000 + rand.nextInt((999999-100000) +1); // random six digit nr over 100000
-//        System.out.println(randomNum);
+        final int T = 1; // number of times to run trial
+        final int nMin = 3; // lowest exponent
+        final int nMax = 6; // highest exponent
         for (int i = 0; i < T; i++) {
-            BSQ.runTrial();
+            BSQ.runTrial(nMin, nMax);
         }
         HashMap results = BSQ.getDoubleOccurrences();
         printResultTable(results);
-
     }
 
-    public void printResultTable(HashMap quantities) {
-        quantities.forEach((k, v) -> System.out.println("key" + k + "value" + v));
+    public void printResultTable(HashMap<Integer, Integer> quantities) {
+        System.out.println("N\toccurrences\n---------------");
+        quantities.forEach((k, v) -> System.out.println("10^" + k + "\t" + v));
     }
 }

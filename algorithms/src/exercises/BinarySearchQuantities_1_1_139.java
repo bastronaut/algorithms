@@ -33,18 +33,25 @@ public class BinarySearchQuantities_1_1_139 {
         int currentCount = 0;
         for (int i = 0; i< firstArray.length-1; i++) {
             if (bs.Search(firstArray[i], secondArray) != -1) {
-                currentCount = getOrDefault(doubleOccurrences, nExponant, 0);
-                doubleOccurrences.put(nExponant, currentCount);
+                currentCount = getOrDefault(doubleOccurrences, nExponant);
+                doubleOccurrences.put(nExponant, currentCount +1);
+//                System.out.println("Found double occurrence for: "+ i);
             }
         }
     }
 
-    private static <K, V> V getOrDefault(Map<K,V> map, K key, V defaultValue) {
-        return map.containsKey(key) ? map.get(key) : defaultValue;
+    private static int getOrDefault(Map<Integer, Integer> map, int key) {
+        int value;
+        try {
+            return map.get(key);
+        } catch (NullPointerException e) {
+            return 0;
+        }
     }
 
-    public void runTrial() {
-        for (int n = 3; n < 6; n++) {
+    public void runTrial(int nMin, int nMax) {
+        if (nMin > nMax || nMin == nMax) { return; }
+        for (int n = nMin; n <= nMax; n++) {
             int[] firstArray = buildNSizedArray(n);
             int[] secondArray = buildNSizedArray(n);
             findDoubleOccurrences(firstArray, secondArray, n);

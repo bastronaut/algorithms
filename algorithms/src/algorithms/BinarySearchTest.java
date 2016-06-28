@@ -1,3 +1,5 @@
+package algorithms;
+
 import org.junit.Before;
 
 import java.util.Arrays;
@@ -17,14 +19,16 @@ public class BinarySearchTest {
     // positive test case
     @org.junit.Test
     public void searchPositive() throws Exception {
-        final int n = 500; // arbitrary size of array
+        final int n = 500; // arbitrary size of array and max size of array entries
         final int key = 137; // arbitrary key to find
         BinarySearch bs = new BinarySearch();
         int[] orderedInts = buildOrderedArrayWithKey(n, key);
         // As the index that it returns is based on a random list
         // can not predetermine what the index will be. As long as it is smaller than n and over 0
         assertNotEquals(bs.Search(key, orderedInts), -1);
-        assertTrue((bs.Search(key, orderedInts) > 0) && (bs.Search(key, orderedInts) < n));
+        int keyindex = bs.Search(key, orderedInts);
+        assertTrue(keyindex > 0);
+        assertTrue(keyindex < n);
     }
 
     // negative test case
@@ -48,9 +52,9 @@ public class BinarySearchTest {
         // add key to array and seed array
         orderedInts[0] = key;
         for (int i = 1; i < n; i++ ) {
-            int randomnr;
-            randomnr = rand.nextInt(n);
-            orderedInts[i] = randomnr;
+            int randomNum;
+            randomNum = rand.nextInt(n);
+            orderedInts[i] = randomNum;
         }
         Arrays.sort(orderedInts);
         return orderedInts;

@@ -25,7 +25,7 @@ findword = "xfdskjfsdhjk"
 words.append(findword)
 sortedwords = sorted(words)
 
-def BinarySearch(array, findword):
+def algorithms.BinarySearch(array, findword):
     if len(array) <= 0:
         print 'array contains no elements'
         return
@@ -79,6 +79,6 @@ def recursivesplitbinarysearch(array, findword):
     elif findword < array[location]:
         recursivesplitbinarysearch(array[:location], findword)
 
-BinarySearch(sortedwords, findword)
+algorithms.BinarySearch(sortedwords, findword)
 recursivebinarysearch(sortedwords, findword, len(sortedwords), 0)
 recursivesplitbinarysearch(sortedwords, findword)

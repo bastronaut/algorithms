@@ -59,25 +59,27 @@ def recursivebinarysearch(array, findword, upperbound, lowerbound):
     print 'testing at location:', currentlocation, upperbound, lowerbound
     if array[currentlocation] == findword:
         print 'found the word: ', findword, ' at location: ', currentlocation
+        return currentlocation
     elif array[currentlocation] < findword:
-        recursivebinarysearch(array, findword, upperbound, currentlocation)
+        return recursivebinarysearch(array, findword, upperbound, currentlocation)
     elif array[currentlocation] > findword:
-        recursivebinarysearch(array, findword, currentlocation, lowerbound)
+        return recursivebinarysearch(array, findword, currentlocation, lowerbound)
+
 
 # passes an array that is constantly split until its search completes
 def recursivesplitbinarysearch(array, findword):
     if len(array) <= 0:
         print 'array contains no elements, findword:', findword, 'not in array'
-        return
+        return -1
     location = len(array)/2
     print 'array is now size:', len(array),' testing at location: ', location, array[location]
     if findword == array[location]:
         print 'found the word ', findword
-        return
+        return True
     elif findword > array[location]:
-        recursivesplitbinarysearch(array[location:], findword)
+        return recursivesplitbinarysearch(array[location:], findword)
     elif findword < array[location]:
-        recursivesplitbinarysearch(array[:location], findword)
+        return recursivesplitbinarysearch(array[:location], findword)
 
 algorithms.BinarySearch(sortedwords, findword)
 recursivebinarysearch(sortedwords, findword, len(sortedwords), 0)

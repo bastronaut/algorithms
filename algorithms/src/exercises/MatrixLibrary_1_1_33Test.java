@@ -1,5 +1,7 @@
 package exercises;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -10,29 +12,37 @@ import static org.junit.Assert.*;
  static double transpose(double[][] a) transpose
  static double mult(double[][] a , double[] x) matrix-vector product
  static double mult(double[] y , double[][] a) vector-matrix product
+
+ assertEquals for doubles take an additional epsilon argument: as doubles may not be exactly equal
+ the epsilon serves as a fuzzy factor
  */
 
 public class MatrixLibrary_1_1_33Test {
     MatrixLibrary_1_1_33 ml = new MatrixLibrary_1_1_33();
 
     @org.junit.Test
-    public void testDot() throws Exception {
+    public void testDot() {
         double[] x = new double[]{1, 2, 3, 4, 5};
         double[] y = new double[]{1, 2, 3, 4, 5};
-        double[] testresult = new double[]{1, 4, 9, 16, 25};
+        double testResult = 55;
 
-        assertArrayEquals(testresult, ml.dot(x, y), 0);
+        assertEquals(testResult, ml.dot(x, y), 0);
+
+        double[] xn = new double[]{0};
+        double[] yn = new double[]{25};
+        testResult = 0;
+        assertEquals(testResult, ml.dot(xn, yn), 0);
     }
 
     @org.junit.Test
     public void testMultMatrixMatrix() throws Exception {
         double[][] x = new double[2][3];
         double[][] y = new double[3][2];
-        double[][] testresult = new double[][]{
+        double[][] testResult = new double[][]{
                 {9, 12, 15},
                 {19, 26, 33},
                 {29, 40, 51} };
-        assertTrue(assertDoubleArrayEquals(testresult, ml.mult(x, y)));
+        assertTrue(assertDoubleArrayEquals(testResult, ml.mult(x, y)));
 
     }
 
@@ -42,18 +52,30 @@ public class MatrixLibrary_1_1_33Test {
                 {1, 1},
                 {2, 2},
                 {3, 3} };
-        double [][] testresult = new double[][]{
+        double [][] transposedx = new double[][]{
                 {1, 2, 3},
                 {1, 2, 3} };
-        assertTrue(assertDoubleArrayEquals(testresult, ml.transpose(x)));
+        assertTrue(assertDoubleArrayEquals(transposedx, ml.transpose(x)));
+        assertTrue(assertDoubleArrayEquals(transposedx, ml.transpose(x)));
+
+        double[][] y = new double[][] {
+                {1, 1, 1} };
+        double[][] transposedy = new double[][]{
+                {1},
+                {1},
+                {1} };
+        assertTrue(assertDoubleArrayEquals(transposedy, ml.transpose(y)));
+        assertTrue(assertDoubleArrayEquals(ml.transpose(y), transposedy));
+
+
     }
 
     @org.junit.Test
     public void testMultMatrixVector() throws Exception {
         double[] x = new double[]{};
         double[][] y = new double[][]{{}};
-        double[] testresult = new double[]{};
-        assertArrayEquals(testresult, ml.mult(y, x), 0);
+        double[] testResult = new double[]{};
+        assertArrayEquals(testResult, ml.mult(y, x), 0);
 
     }
 
@@ -64,8 +86,8 @@ public class MatrixLibrary_1_1_33Test {
                 {13, 9, 7, 15},
                 {8, 7, 4, 6},
                 {6, 4, 0, 3} };
-        double[] testresult = new double[]{83, 63, 37, 75};
-        assertArrayEquals(testresult, ml.mult(x, y), 0);
+        double[] testResult = new double[]{83, 63, 37, 75};
+        assertArrayEquals(testResult, ml.mult(x, y), 0);
 
 
     }
@@ -86,7 +108,6 @@ public class MatrixLibrary_1_1_33Test {
             System.out.println("error validating assertArrayEquals[][]" + e);
             return false;
         }
-        System.out.println("assertDoubleArrayEquals passed successfully");
         return true;
     }
 }

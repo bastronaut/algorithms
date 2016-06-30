@@ -22,10 +22,13 @@ package exercises;
 
 public class MatrixLibrary_1_1_33 {
 
-    public static double[] dot(double[] x, double[] y) {
-        double[] result = new double[x.length];
+    // vector dot product (or inner product, or scalar product) takes two equal length vectors and returns a
+    // single scalar: [ax, bx] [ay, by] is ax*ay + bx*by = c
+    public static double dot(double[] x, double[] y) throws IllegalArgumentException {
+        if (x.length != y.length) { throw new IllegalArgumentException("vectors must be of equal length "); }
+        double result = 0;
         for (int i = 0; i < x.length; i++){
-            result[i] = x[i] * y[i];
+            result += x[i] * y[i];
         }
         return result;
     }
@@ -39,8 +42,6 @@ public class MatrixLibrary_1_1_33 {
     }
 
     public static double[][] transpose(double[][] a) {
-//        double[][] result = new double[1][1];
-//        return result;
         double[][] transposed = new double[a[0].length][a.length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[i].length; j++){

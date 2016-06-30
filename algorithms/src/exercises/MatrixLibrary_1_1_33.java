@@ -39,8 +39,15 @@ public class MatrixLibrary_1_1_33 {
     }
 
     public static double[][] transpose(double[][] a) {
-        double[][] result = new double[1][1];
-        return result;
+//        double[][] result = new double[1][1];
+//        return result;
+        double[][] transposed = new double[a[0].length][a.length];
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++){
+                transposed[j][i] = a[i][j];
+            }
+        }
+        return transposed;
     }
 
 

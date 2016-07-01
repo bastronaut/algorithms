@@ -36,13 +36,36 @@ public class MatrixLibrary_1_1_33Test {
 
     @org.junit.Test
     public void testMultMatrixMatrix() throws Exception {
-        double[][] x = new double[2][3];
-        double[][] y = new double[3][2];
+        double[][] x = new double[][]{
+                {2, 3},
+                {4, 2},
+                {1, 3},
+                {0, 2}, };
+        double[][] y = new double[][]{
+                {1, 2},
+                {1, 2}};
         double[][] testResult = new double[][]{
-                {9, 12, 15},
-                {19, 26, 33},
-                {29, 40, 51} };
+                {5, 10},
+                {6, 12},
+                {4, 8},
+                {2, 4} };
+
         assertTrue(assertDoubleArrayEquals(testResult, ml.mult(x, y)));
+
+        double[][] xn = new double[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9} };
+        double[][] yn = new double[][]{
+                {5},
+                {4},
+                {3}};
+        testResult = new double[][]{
+                {22},
+                {58},
+                {94} };
+
+        assertTrue(assertDoubleArrayEquals(testResult, ml.mult(xn, yn)));
 
     }
 

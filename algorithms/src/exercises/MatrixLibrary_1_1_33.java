@@ -1,5 +1,7 @@
 package exercises;
 
+import java.util.Arrays;
+
 /**
  Write a library 'Matrix' that implements the following API:
 
@@ -15,8 +17,6 @@ package exercises;
  To multiply an m×n matrix by an n×p matrix, the ns must be the same, and the result is an m×p matrix.
 
  Matrix multiplication is therefor not commutative.
-
-
 
  */
 
@@ -34,15 +34,36 @@ public class MatrixLibrary_1_1_33 {
     }
 
     public static double[][] mult(double[][] a, double [][] b) {
-        double[][] testresult = new double[][]{
-                {9, 12, 15},
-                {19, 26, 33},
-                {29, 40, 51} };
-        return testresult;
+        if (a.length <= 0 || b.length <= 0) { throw new IllegalArgumentException("matrix must have at least 1 row");}
+        if (a[0].length != b.length) { throw new IllegalArgumentException("columns in A must match rows in B " + a.length +" " +  b.length);}
+        int columnSizeA = a[0].length;
+        for (double[] row : a) {
+            if (row.length != columnSizeA) throw new IllegalArgumentException("Columns in A must be of equal length");
+        }
+        int columnSizeB = b[0].length;
+        for (double[] row : b) {
+            if (row.length != columnSizeB) throw new IllegalArgumentException("Columns in B must be of equal length");
+        }
+
+        double[][] result = new double[a.length][b[0].length];
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                for (int k = 0; k < b[0].length; k ++) {
+
+                    result[i][k] += a[i][j] * b[j][k];
+                }
+            }
+        }
+        return result;
     }
 
     public static double[][] transpose(double[][] a) {
+        if (a.length <= 0) { throw new IllegalArgumentException("matrix must have at least 1 row");}
+        if (a[0].length <= 0) { throw new IllegalArgumentException("column must have at least 1 value");}
+
         double[][] transposed = new double[a[0].length][a.length];
+
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[i].length; j++){
                 transposed[j][i] = a[i][j];

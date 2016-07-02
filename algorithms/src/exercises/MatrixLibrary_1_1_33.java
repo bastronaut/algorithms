@@ -35,7 +35,7 @@ public class MatrixLibrary_1_1_33 {
 
     public static double[][] mult(double[][] a, double [][] b) {
         if (a.length <= 0 || b.length <= 0) { throw new IllegalArgumentException("matrix must have at least 1 row");}
-        if (a[0].length != b.length) { throw new IllegalArgumentException("columns in A must match rows in B " + a.length +" " +  b.length);}
+        if (a[0].length != b.length) { throw new IllegalArgumentException("columns in A must match rows in B " + a[0].length +" " +  b.length);}
         int columnSizeA = a[0].length;
         for (double[] row : a) {
             if (row.length != columnSizeA) throw new IllegalArgumentException("Columns in A must be of equal length");
@@ -73,10 +73,19 @@ public class MatrixLibrary_1_1_33 {
     }
 
 
-
+    // matrix * vector can be viewed as matrix * singlecolumn matrix.
+    // http://mathinsight.org/matrix_vector_multiplication
     public static double[] mult(double[][] a, double[] x) {
-        double[] result = new double[1];
-        return result;
+        double[][] singlecolumnmatrix = new double[x.length][1];
+        for (int i = 0; i < x.length; i ++) {
+            singlecolumnmatrix[i][0] = x[i];
+        }
+
+        double[][] singlecolumnmatrixresult = mult(a, singlecolumnmatrix);
+        System.out.println(Arrays.toString(singlecolumnmatrix));
+        System.out.println(Arrays.toString(singlecolumnmatrix[0]));
+        // TODO: return the 1-column multiple rows into a single array
+        return singlecolumnmatrix[0];
     }
 
     public static double[] mult(double[] y, double[][] x) {

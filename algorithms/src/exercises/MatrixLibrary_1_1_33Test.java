@@ -95,11 +95,11 @@ public class MatrixLibrary_1_1_33Test {
 
     @org.junit.Test
     public void testMultMatrixVector() throws Exception {
-        double[] x = new double[]{2, 1, 0};
+        double[] x = new double[]{2, 1, 3};
         double[][] y = new double[][]{
-                {1, -1, 2},
-                {0, -3, 1}};
-        double[] testResult = new double[]{1, -3};
+                {1, 5, 2},
+                {0, 3, 1}};
+        double[] testResult = new double[]{13, 6};
         assertArrayEquals(testResult, ml.mult(y, x), 0);
 
     }

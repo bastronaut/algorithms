@@ -33,6 +33,7 @@ public class MatrixLibrary_1_1_33 {
         return result;
     }
 
+    // matrix * matrix
     public static double[][] mult(double[][] a, double [][] b) {
         if (a.length <= 0 || b.length <= 0) { throw new IllegalArgumentException("matrix must have at least 1 row");}
         if (a[0].length != b.length) { throw new IllegalArgumentException("columns in A must match rows in B " + a[0].length +" " +  b.length);}
@@ -81,16 +82,33 @@ public class MatrixLibrary_1_1_33 {
             singlecolumnmatrix[i][0] = x[i];
         }
 
-        double[][] singlecolumnmatrixresult = mult(a, singlecolumnmatrix);
-        System.out.println(Arrays.toString(singlecolumnmatrix));
-        System.out.println(Arrays.toString(singlecolumnmatrix[0]));
-        // TODO: return the 1-column multiple rows into a single array
-        return singlecolumnmatrix[0];
+        double[][] multicolumnresult = mult(a, singlecolumnmatrix);
+
+        // flatten the 1-column multiple rows into a single array
+        double[] result = new double[multicolumnresult.length];
+        for (int i = 0; i < multicolumnresult.length; i ++) {
+            result[i] = multicolumnresult[i][0];
+        }
+        return result;
     }
 
-    public static double[] mult(double[] y, double[][] x) {
-        double[] result = new double[1];
+    // vector * matrix
+    public static double[] mult(double[] x, double[][] a) {
+        if (a.length <= 0 || x.length <= 0) { throw new IllegalArgumentException("matrix must have at least 1 row");}
+        if (x.length != a.length) throw new IllegalArgumentException("columns in A must match rows in B " + x.length +" " +  a.length);
+        double[] result = new double[a[0].length];
+        for (int i = 0; i < a[0].length; i++)
+            for (int j = 0; j < a[0].length; j++)
+                result[i] += a[j][i] * x[j];
         return result;
+//        int m = a.length;
+//        int n = a[0].length;
+//        if (x.length != m) throw new RuntimeException("Illegal matrix dimensions.");
+//        double[] y = new double[n];
+//        for (int j = 0; j < n; j++)
+//            for (int i = 0; i < m; i++)
+//                y[j] += a[i][j] * x[i];
+//        return y;
     }
 
 }

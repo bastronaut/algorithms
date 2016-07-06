@@ -4,13 +4,17 @@ package exercises;
  * Created by BSijtsma on 04-07-2016.
  */
 public class Point2D {
+    int id;
     int x;
     int y;
 
-    public Point2D(int x, int y) {
+    public Point2D(int id, int x, int y) {
+        this.id = id;
         this.x = x;
         this.y = y;
     }
+
+    public int getId() { return id; }
 
     public int getX() {
         return x;
@@ -24,7 +28,10 @@ public class Point2D {
         this.x = x;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setY(int y) { this.y = y;
+    }
+
+    public String toString() {
+        return "id: "+this.id + " x:" + this.x + " y:"+ this.y;
     }
 }

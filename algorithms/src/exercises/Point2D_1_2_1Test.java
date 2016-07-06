@@ -24,7 +24,10 @@ public class Point2D_1_2_1Test {
         // what can we assert:
         // that two closest points have distance 0
         // that the two points returned are at location CLOSESTPOINTSXY
-        //
+        // that the closest points have an id of p2d.CLOSESTPOINTID
+        p2d.addClosePoints();
+
+
 
     }
 

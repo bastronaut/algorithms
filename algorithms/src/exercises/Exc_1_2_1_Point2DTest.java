@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 /**
  * Created by BSijtsma on 04-07-2016.
  */
-public class Point2D_1_2_1Test {
-    Point2D_1_2_1 p2d = new Point2D_1_2_1();
+public class Exc_1_2_1_Point2DTest {
+    Exc_1_2_1_Point2D p2d = new Exc_1_2_1_Point2D();
 
     @org.junit.Test
     public void testGeneratePoints() {
@@ -38,6 +38,4 @@ public class Point2D_1_2_1Test {
         assertTrue(closestpoints[1].getY() == p2d.CLOSESTPOINTSXY+1);
 
     }
-
-
 }

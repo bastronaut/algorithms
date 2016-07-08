@@ -1,9 +1,6 @@
 package exercises;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
 
 
 import static java.lang.Integer.parseInt;
@@ -18,10 +15,10 @@ import static org.junit.Assert.*;
  * Print a table giving the average value of this quantity over the T trials for each
  * value of N
  */
-public class BinarySearchQuantities_1_1_139Test {
+public class Exc_1_1_139_BinarySearchQuantitiesTest {
     @org.junit.Test
     public void runTrial() throws Exception {
-        BinarySearchQuantities_1_1_139 BSQ = new BinarySearchQuantities_1_1_139();
+        Exc_1_1_139_BinarySearchQuantities BSQ = new Exc_1_1_139_BinarySearchQuantities();
         final int T = 1; // number of times to run trial
         final int nMin = 3; // lowest exponent
         final int nMax = 6; // highest exponent

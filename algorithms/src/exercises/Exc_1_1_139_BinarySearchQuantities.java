@@ -15,7 +15,7 @@ import java.util.Random;
  * Print a table giving the average value of this quantity over the T trials for each
  * value of N
  */
-public class BinarySearchQuantities_1_1_139 {
+public class Exc_1_1_139_BinarySearchQuantities {
 
     BinarySearch bs = new algorithms.BinarySearch();
     private HashMap<Integer, Integer> doubleOccurrences = new HashMap<>();

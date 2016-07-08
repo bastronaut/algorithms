@@ -1,7 +1,5 @@
 package exercises;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 /**
@@ -17,8 +15,8 @@ import static org.junit.Assert.*;
  the epsilon serves as a fuzzy factor
  */
 
-public class MatrixLibrary_1_1_33Test {
-    MatrixLibrary_1_1_33 ml = new MatrixLibrary_1_1_33();
+public class Exc_1_1_33_MatrixLibraryTest {
+    Exc_1_1_33_MatrixLibrary ml = new Exc_1_1_33_MatrixLibrary();
 
     @org.junit.Test
     public void testDot() {

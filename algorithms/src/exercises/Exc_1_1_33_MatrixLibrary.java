@@ -20,7 +20,7 @@ import java.util.Arrays;
 
  */
 
-public class MatrixLibrary_1_1_33 {
+public class Exc_1_1_33_MatrixLibrary {
 
     // vector dot product (or inner product, or scalar product) takes two equal length vectors and returns a
     // single scalar: [ax, bx] [ay, by] is ax*ay + bx*by = c
@@ -101,14 +101,5 @@ public class MatrixLibrary_1_1_33 {
             for (int j = 0; j < a[0].length; j++)
                 result[i] += a[j][i] * x[j];
         return result;
-//        int m = a.length;
-//        int n = a[0].length;
-//        if (x.length != m) throw new RuntimeException("Illegal matrix dimensions.");
-//        double[] y = new double[n];
-//        for (int j = 0; j < n; j++)
-//            for (int i = 0; i < m; i++)
-//                y[j] += a[i][j] * x[i];
-//        return y;
     }
-
 }

@@ -8,7 +8,7 @@ import java.util.Random;
  * and compute the distance seperating the closest pair of points
  * Distance will be (double) euclidean distance
  */
-public class Point2D_1_2_1 {
+public class Exc_1_2_1_Point2D {
 
     ArrayList<Point2D> points = new ArrayList<>();
     final int ARBITRARYINTLIMIT = 9999999;
@@ -19,7 +19,6 @@ public class Point2D_1_2_1 {
         Random rand = new Random();
         for (int i = 0; i < Math.pow(n, 2); i ++) {
             points.add(new Point2D(i, rand.nextInt(ARBITRARYINTLIMIT), rand.nextInt(ARBITRARYINTLIMIT)));
-
         }
     }
 
@@ -52,12 +51,10 @@ public class Point2D_1_2_1 {
                 }
             }
         }
-        System.out.println("the closest: " + closestDistance);
-        System.out.println("the points are: " + closestPoints[0] + " " + closestPoints[1]);
         return closestPoints;
     }
 
-    public double getEuclideanDistance(Point2D a, Point2D b) {
+    private double getEuclideanDistance(Point2D a, Point2D b) {
         return Math.sqrt( Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2) );
     }
 }

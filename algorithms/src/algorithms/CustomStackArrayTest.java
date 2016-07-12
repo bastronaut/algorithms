@@ -2,7 +2,8 @@ package algorithms;
 
 import java.util.EmptyStackException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Implementation of a generic stack with a Linked List data structure
@@ -13,10 +14,11 @@ import static org.junit.Assert.*;
  * size(): return the number of items on the stack
  */
 
-public class CustomStackTest {
+public class CustomStackArrayTest {
 
+    @org.junit.Test
     public void testPush() {
-        CustomStack<String> stacktest = new CustomStack<>();
+        CustomStackArray<String> stacktest = new CustomStackArray<>(5);
         assertTrue(stacktest.size() == 0);
         stacktest.push("hi");
         stacktest.push("there");
@@ -30,12 +32,12 @@ public class CustomStackTest {
         stacktest.pop();
         stacktest.pop();
         stacktest.push("test");
-        assertTrue(stacktest.size() == 4);
+        assertTrue(stacktest.size() == 3);
     }
 
     @org.junit.Test
     public void testPop() {
-        CustomStack<String> stacktest = new CustomStack<>();
+        CustomStackArray<String> stacktest = new CustomStackArray<>(5);
         stacktest.push("hi");
         assertTrue(stacktest.pop() == "hi");
         assertTrue(stacktest.size() == 0);
@@ -46,9 +48,16 @@ public class CustomStackTest {
         assertTrue(stacktest.size() == 2);
         assertTrue(stacktest.pop() == "how");
         assertTrue(stacktest.size() == 1);
+        assertFalse(stacktest.isEmpty());
         assertTrue(stacktest.pop() == "hi");
         assertTrue(stacktest.size() == 0);
-        assertTrue(stacktest.pop().equals(new EmptyStackException()));
+        assertTrue(stacktest.isEmpty());
+    }
+
+    @org.junit.Test(expected = EmptyStackException.class)
+    public void testEmptyStack() {
+        CustomStackArray<String> stacktest = new CustomStackArray<>(5);
+        stacktest.pop();
     }
 
 

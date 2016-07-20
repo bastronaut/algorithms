@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 
 /**
- * Implementation of a generic stack (Last in First Out) with a single Linked List data structure
+ * Implementation of a generic stack (Last in First Out) with an array data structure
  * api is as follows:
  * push(): add to top of stack
  * pop() : remove from top of stack
@@ -47,13 +47,12 @@ public class CustomStackArray<T> implements Iterable<T>{
         return N;
     }
 
-    public void resizeStack(int size) {
+    private void resizeStack(int size) {
         T[] newstack = (T[]) new Object[size];
-        for (int i = 0; i < stack.length; i ++) {
-            newstack[i] = stack[i];
-        }
+        System.arraycopy(stack, 0, newstack, 0, stack.length);
         stack = newstack;
     }
+
 
     @Override
     public Iterator<T> iterator() {
@@ -73,6 +72,8 @@ public class CustomStackArray<T> implements Iterable<T>{
         public T next() {
             return stack[--i];
         }
+
+        public void remove() {}
     }
 
 

@@ -1,12 +1,11 @@
 package algorithms;
 
-        import java.util.EmptyStackException;
+import java.util.EmptyStackException;
 
-        import static org.junit.Assert.assertFalse;
-        import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
- * Implementation of a generic stack with an array data structure
+ * Implementation of a generic stack with a Linked List data structure
  * api is as follows:
  * push(): add to top of stack
  * pop() : remove from top of stack
@@ -14,11 +13,11 @@ package algorithms;
  * size(): return the number of items on the stack
  */
 
-public class CustomStackArrayTest {
+public class CustomStackLinkedListTest {
 
     @org.junit.Test
     public void testPush() {
-        CustomStackArray<String> stacktest = new CustomStackArray<>(5);
+        CustomStackLinkedList<String> stacktest = new CustomStackLinkedList<>();
         assertTrue(stacktest.size() == 0);
         stacktest.push("hi");
         stacktest.push("there");
@@ -37,7 +36,7 @@ public class CustomStackArrayTest {
 
     @org.junit.Test
     public void testPop() {
-        CustomStackArray<String> stacktest = new CustomStackArray<>(5);
+        CustomStackLinkedList<String> stacktest = new CustomStackLinkedList<>();
         stacktest.push("hi");
         assertTrue(stacktest.pop() == "hi");
         assertTrue(stacktest.size() == 0);
@@ -48,27 +47,9 @@ public class CustomStackArrayTest {
         assertTrue(stacktest.size() == 2);
         assertTrue(stacktest.pop() == "how");
         assertTrue(stacktest.size() == 1);
-        assertFalse(stacktest.isEmpty());
         assertTrue(stacktest.pop() == "hi");
         assertTrue(stacktest.size() == 0);
-        assertTrue(stacktest.isEmpty());
     }
 
-    @org.junit.Test(expected = EmptyStackException.class)
-    public void testEmptyStack() {
-        CustomStackArray<String> stacktest = new CustomStackArray<>(5);
-        stacktest.pop();
-    }
 
-    @org.junit.Test
-    public void testForEach() {
-        CustomStackArray<String> stacky = new CustomStackArray<>(5);
-        stacky.push("hi");
-        stacky.push("how");
-        stacky.push("are");
-
-        for (Object item : stacky) {
-            System.out.println(item);
-        }
-    }
 }

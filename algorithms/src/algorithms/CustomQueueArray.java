@@ -14,37 +14,42 @@ import java.util.Iterator;
 public class CustomQueueArray<Item> implements Iterable {
 
     private int n;
-    private int firstItem;
+    private int firstQueueItem;
     private Item[] queue;
 
     public CustomQueueArray(int queueSize) {
         queue = (Item[]) new Object[queueSize];
     }
 
-    public void enqueue(Item QueueItem) {
+    public void enqueue(Item queueItem) {
         if (n == queue.length) {
             resizeQueue(queue.length * 2);
         }
-
+        queue[n] = queueItem;
+        n++;
     }
 
     private void resizeQueue(int queueSize) {
-
+        Item[] newqueue = (Item[]) new Object[queueSize];
+        System.arraycopy(queue, 0, newqueue, 0, queue.length);
+        queue = newqueue;
     }
 
     public Item dequeue() {
-        if (n <= 0) {
+        if (firstQueueItem > n) {
             throw new EmptyStackException();
         }
-        return null;
+        Item returnItem = queue[firstQueueItem];
+        firstQueueItem++;
+        return returnItem;
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return firstQueueItem >= n;
     }
 
     public int size() {
-        return n;
+        return n-firstQueueItem;
     }
 
     @Override
@@ -53,9 +58,12 @@ public class CustomQueueArray<Item> implements Iterable {
     }
 
     private class CustomQueueIterator implements Iterator<Item> {
-        public boolean hasNext() { return true;}
+        private int iteratorN = n;
+        private int iteratorFirstQueueItem = firstQueueItem;
+
+        public boolean hasNext() { return iteratorFirstQueueItem > iteratorN;}
         public Item next() {
-            return null;
+            return queue[++iteratorFirstQueueItem];
         }
         public void remove() {}
     }

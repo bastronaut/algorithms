@@ -61,9 +61,12 @@ public class CustomQueueArray<Item> implements Iterable {
         private int iteratorN = n;
         private int iteratorFirstQueueItem = firstQueueItem;
 
-        public boolean hasNext() { return iteratorFirstQueueItem > iteratorN;}
+        public boolean hasNext() { return iteratorFirstQueueItem < iteratorN;}
+
         public Item next() {
-            return queue[++iteratorFirstQueueItem];
+            Item returnItem = queue[iteratorFirstQueueItem];
+            iteratorFirstQueueItem++;
+            return returnItem;
         }
         public void remove() {}
     }

@@ -56,10 +56,30 @@ public class CustomStackLinkedList<T> implements Iterable<T>{
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new CustomStackLinkedListIterator();
     }
 
+    private class CustomStackLinkedListIterator implements Iterator<T> {
 
+        Node iteratorTopStackNode = topStackNode;
+
+        @Override
+        public boolean hasNext() {
+            System.out.println("does it have next?");
+            return iteratorTopStackNode != null;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = iteratorTopStackNode.getItem();
+            iteratorTopStackNode = iteratorTopStackNode.getNext();
+            return  returnItem;
+        }
+
+        @Override
+        public void remove() {
+        }
+    }
 
     private class Node {
         private Node next;
@@ -79,6 +99,10 @@ public class CustomStackLinkedList<T> implements Iterable<T>{
 
         public Node getNext() {
             return this.next;
+        }
+
+        public String toString() {
+            return "Node:" + item;
         }
     }
 }

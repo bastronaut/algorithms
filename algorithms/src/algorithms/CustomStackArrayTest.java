@@ -67,8 +67,18 @@ public class CustomStackArrayTest {
         stacky.push("how");
         stacky.push("are");
 
+        String[] stackItems = new String[3];
+        int i = 0;
+
         for (Object item : stacky) {
+            stackItems[i] = (String) item;
             System.out.println(item);
+            i++; // hacky to test the foreach
         }
+        assertTrue(stackItems[0] == "are");
+        assertTrue(stackItems[1] == "how");
+        assertTrue(stackItems[2] == "hi");
+
+
     }
 }

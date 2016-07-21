@@ -1,5 +1,7 @@
 package algorithms;
 
+import org.junit.Test;
+
 import java.util.EmptyStackException;
 
 import static org.junit.Assert.*;
@@ -51,5 +53,39 @@ public class CustomStackLinkedListTest {
         assertTrue(stacktest.size() == 0);
     }
 
+    @Test
+    public void testForEach() {
+        CustomStackLinkedList<String> stack = new CustomStackLinkedList<>();
+        stack.push("hi");
+        stack.push("how");
+        stack.push("are");
+
+        String[] queueItems = new String[3];
+        int i = 0;
+
+        for (Object item : stack) {
+            queueItems[i] = (String) item;
+            System.out.println(item);
+            i++; // hacky to test the foreach
+        }
+        assertTrue("test queueitem = are", queueItems[0] == "are");
+        assertTrue("test queueitem = how", queueItems[1] == "how");
+        assertTrue("test queueitem = hi", queueItems[2] == "hi");
+
+        stack.pop();
+        stack.pop();
+
+
+        String[] emptyQueueItems = new String[1];
+        i = 0;
+
+        for (Object item : stack) {
+            emptyQueueItems[i] = (String) item;
+            i++; // hacky to test the foreach
+        }
+
+        assertTrue(emptyQueueItems[0] == "hi");
+
+    }
 
 }

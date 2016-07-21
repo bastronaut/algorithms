@@ -1,5 +1,7 @@
 package algorithms;
 
+
+
 import java.util.EmptyStackException;
 
 import static org.junit.Assert.assertFalse;
@@ -55,5 +57,25 @@ public class CustomQueueArrayTest {
         stacktest.enqueue("hi");
         stacktest.dequeue();
         stacktest.dequeue();
+    }
+
+    @org.junit.Test
+    public void testForEach() {
+        CustomQueueArray<String> queue = new CustomQueueArray<>(5);
+        queue.enqueue("hi");
+        queue.enqueue("how");
+        queue.enqueue("are");
+
+        String[] queueItems = new String[3];
+        int i = 0;
+
+        for (Object item : queue) {
+            queueItems[i] = (String) item;
+            System.out.println(item);
+            i++; // hacky to test the foreach
+        }
+        assertTrue(queueItems[0] == "hi");
+        assertTrue(queueItems[1] == "how");
+        assertTrue(queueItems[2] == "are");
     }
 }

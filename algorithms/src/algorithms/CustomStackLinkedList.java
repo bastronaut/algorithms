@@ -42,7 +42,6 @@ public class CustomStackLinkedList<T> implements Iterable<T>{
         Node returnNode = topStackNode;
         topStackNode = topStackNode.getNext();
         N--;
-        System.out.println("returning: " + returnNode.getItem());
         return returnNode.getItem();
     }
 

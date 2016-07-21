@@ -19,12 +19,12 @@ public class DijkstraArithmeticExpressionTest {
     @org.junit.Test
     public void testCalculate() {
         DijkstraArithmeticExpression dae = new DijkstraArithmeticExpression();
-        assertTrue(dae.calculate("(1+((2+3)*(4*5)))") == 101);
-        assertTrue(dae.calculate("5*(1+1)") == 10);
-        assertTrue(dae.calculate("5*(1+(2*5))") == 55);
-        assertTrue(dae.calculate("2 + 5") == 7);
-        assertTrue(dae.calculate("((1+((2+3)*(4*5))) * 0)") == 0);
-        assertFalse(dae.calculate("(1+((2+3)*(4*5)))") == 100);
+        assertTrue(dae.calculate("( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )") == 101);
+        assertTrue(dae.calculate("( 5 * ( 1 + 1 ) )") == 10);
+        assertTrue(dae.calculate("( 5 * ( 1 + ( 2 * 5 ) ) )") == 55);
+        assertTrue(dae.calculate("( 2 + 5 )") == 7);
+        assertTrue(dae.calculate("( ( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) ) * 0 )") == 0);
+        assertFalse(dae.calculate("( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )") == 100);
 
     }
 }

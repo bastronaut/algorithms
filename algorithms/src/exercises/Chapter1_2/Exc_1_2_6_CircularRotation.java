@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Chapter1_2;
 
 /**
  * A string is a circular rotation of a string if it

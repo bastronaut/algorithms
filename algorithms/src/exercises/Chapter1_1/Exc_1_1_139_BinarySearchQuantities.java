@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Chapter1_1;
 
 import algorithms.BinarySearch;
 

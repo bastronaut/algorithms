@@ -1,4 +1,4 @@
-package exercises;
+package algorithms;
 
 /**
  * Created by BSijtsma on 04-07-2016.

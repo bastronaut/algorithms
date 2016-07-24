@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Chapter1_3;
 
 import static junit.framework.TestCase.assertTrue;
 

@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Chapter1_2;
 
 /**
  * Created by BSijtsma on 07-07-2016.

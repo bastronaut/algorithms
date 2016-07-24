@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Chapter1_2;
 
 import static org.junit.Assert.*;
 

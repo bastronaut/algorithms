@@ -1,4 +1,6 @@
-package exercises;
+package exercises.Chapter1_2;
+
+import algorithms.Point2D;
 
 import static org.junit.Assert.*;
 

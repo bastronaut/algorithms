@@ -1,4 +1,7 @@
-package exercises;
+package exercises.Chapter1_2;
+
+import exercises.Chapter1_2.Exc_1_2_2_Interval2D;
+import algorithms.Point2D;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +9,7 @@ import static org.junit.Assert.*;
  * Write an Interval1D client that takes int value N , creates N intervals
  * (pair of double values), and print all the pairs that intersect
  */
-public class Exc_122Interval2DTest {
+public class Exc_1_22Interval2DTest {
 
     Exc_1_2_2_Interval2D i1d = new Exc_1_2_2_Interval2D();
 

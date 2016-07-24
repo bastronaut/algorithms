@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Chapter1_3;
 
 import org.junit.Test;
 

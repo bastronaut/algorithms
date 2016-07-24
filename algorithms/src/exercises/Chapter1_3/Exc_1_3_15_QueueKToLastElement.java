@@ -42,6 +42,15 @@ public class Exc_1_3_15_QueueKToLastElement implements Iterable {
         return returnItem;
     }
 
+    public String returnKthFromLast(int k) {
+        if (k > N - firstItem) {
+            throw new NullPointerException("K is bigger than the number of elements in the queue");
+        }
+        int kthfromlastIndex = N - firstItem - k - 1;
+        System.out.println(queue[kthfromlastIndex]);
+        return queue[kthfromlastIndex];
+    }
+
     public int size() {
         return N - firstItem;
     }

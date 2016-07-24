@@ -17,80 +17,21 @@ import static org.junit.Assert.assertTrue;
  */
 public class Exc_1_3_15_QueueKToLastElementTest {
     @org.junit.Test
-    public void testEnqueue() {
+    public void testReturnKthFromLast() {
         Exc_1_3_15_QueueKToLastElement stacktest = new Exc_1_3_15_QueueKToLastElement();
-        assertTrue(stacktest.size() == 0);
-        stacktest.enqueue("hi");
-        stacktest.enqueue("there");
-        stacktest.enqueue("how");
-        assertTrue(stacktest.size() == 3);
-        stacktest.enqueue("are");
-        stacktest.enqueue("you");
-        assertTrue(stacktest.size() == 5);
-        stacktest.dequeue();
-        assertTrue(stacktest.size() == 4);
-        stacktest.dequeue();
-        stacktest.dequeue();
-        stacktest.enqueue("test");
-        assertTrue(stacktest.size() == 3);
+        stacktest.enqueue("1");
+        stacktest.enqueue("2");
+        stacktest.enqueue("3");
+        stacktest.enqueue("4");
+        assertTrue(stacktest.returnKthFromLast(2).equals("2"));
+        stacktest.enqueue("5");
+        stacktest.enqueue("6");
+        stacktest.enqueue("7");
+        stacktest.enqueue("8");
+        stacktest.enqueue("9");
+        stacktest.enqueue("10");
+        assertTrue(stacktest.returnKthFromLast(9).equals("1"));
+        assertTrue(stacktest.returnKthFromLast(5).equals("5"));
     }
 
-    @org.junit.Test
-    public void testDequeue() {
-        Exc_1_3_15_QueueKToLastElement stacktest = new Exc_1_3_15_QueueKToLastElement();
-        stacktest.enqueue("hi");
-        assertTrue(stacktest.dequeue().equals("hi"));
-        assertTrue(stacktest.size() == 0);
-        stacktest.enqueue("hi");
-        stacktest.enqueue("how");
-        stacktest.enqueue("are");
-        assertTrue(stacktest.dequeue().equals("hi"));
-        assertTrue(stacktest.size() == 2);
-        assertTrue(stacktest.dequeue().equals("how"));
-        assertTrue(stacktest.size() == 1);
-        assertFalse(stacktest.isEmpty());
-        assertTrue(stacktest.dequeue().equals("are"));
-        assertTrue(stacktest.size() == 0);
-        assertTrue(stacktest.isEmpty());
-        stacktest.enqueue("hi");
-        stacktest.enqueue("how");
-        stacktest.enqueue("are");
-        stacktest.enqueue("you");
-        stacktest.enqueue("im");
-        stacktest.enqueue("doing");
-        stacktest.enqueue("ok");
-        stacktest.enqueue("thanks");
-        stacktest.enqueue("you?");
-        assertTrue(stacktest.size() == 9);
-        assertTrue(stacktest.dequeue().equals("hi"));
-    }
-
-    @org.junit.Test(expected = EmptyStackException.class)
-    public void testEmptyStack() {
-        Exc_1_3_15_QueueKToLastElement stacktest = new Exc_1_3_15_QueueKToLastElement();
-        stacktest.dequeue();
-        stacktest.enqueue("hi");
-        stacktest.dequeue();
-        stacktest.dequeue();
-    }
-
-    @org.junit.Test
-    public void testForEach() {
-        Exc_1_3_15_QueueKToLastElement queue = new Exc_1_3_15_QueueKToLastElement();
-        queue.enqueue("hi");
-        queue.enqueue("how");
-        queue.enqueue("are");
-
-        String[] queueItems = new String[3];
-        int i = 0;
-
-        for (Object item : queue) {
-            queueItems[i] = (String) item;
-            System.out.println(item);
-            i++; // hacky to test the foreach
-        }
-        assertTrue(queueItems[0].equals("hi"));
-        assertTrue(queueItems[1].equals("how"));
-        assertTrue(queueItems[2].equals("are"));
-    }
 }

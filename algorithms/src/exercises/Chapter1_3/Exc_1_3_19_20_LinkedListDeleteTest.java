@@ -96,4 +96,24 @@ public class Exc_1_3_19_20_LinkedListDeleteTest {
         assertTrue(stacktest.pop().equals("4"));
         assertTrue(stacktest.pop().equals("1"));
     }
+
+    @org.junit.Test
+    public void testRemoveMiddleNode() {
+        Exc_1_3_19_20_LinkedListDelete<String> stacktest = new Exc_1_3_19_20_LinkedListDelete<>();
+        stacktest.push("1");
+        stacktest.push("2");
+        stacktest.push("3");
+        stacktest.push("4");
+        stacktest.push("5");
+        stacktest.removeMiddleNode();
+        assertTrue(stacktest.size() == 4);
+        assertTrue(stacktest.pop().equals("5"));
+        assertTrue(stacktest.pop().equals("4"));
+        assertTrue(stacktest.pop().equals("2"));
+        stacktest.push("2");
+        stacktest.push("3");
+        stacktest.removeMiddleNode();
+        assertTrue(stacktest.pop().equals("3"));
+        assertTrue(stacktest.pop().equals("1"));
+    }
 }

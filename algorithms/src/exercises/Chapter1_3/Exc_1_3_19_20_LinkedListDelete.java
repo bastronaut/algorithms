@@ -65,6 +65,31 @@ public class Exc_1_3_19_20_LinkedListDelete <Item> implements Iterable{
         N--;
     }
 
+    // Problem of removing a node given a node. LL: A - B - C - D
+    // How do we remove B when we only have a reference to B:
+    // Make a copy of the item of C into B. then, set B.next to D
+    // effectively deleting C, but not losing access to the item.
+    // Breaks down when it is the last node in the LL.
+    public void removeMiddleNode() {
+        if (isEmpty()) {
+            return;
+        }
+        Node tempTopStackNode = topStackNode;
+        Node middleNode = topStackNode;
+
+        // Will find the middle node. 'Middle' is rounded down in case
+        // of even number of nodes
+        for (int i = 0; tempTopStackNode != null; i++) {
+            tempTopStackNode = tempTopStackNode.next;
+            if (i % 2 != 0) {
+                middleNode = middleNode.next;
+            }
+        }
+        middleNode.item = middleNode.next.item;
+        middleNode.next = middleNode.next.next;
+        N--;
+    }
+
     public void printLinkedList() {
         Node tempTopStackNode = topStackNode;
         while (tempTopStackNode != null) {

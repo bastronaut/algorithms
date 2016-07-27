@@ -42,6 +42,7 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
             tempTopStackNode = tempTopStackNode.next;
         }
         if (tempTopStackNode.equals(node)) {
+            System.out.println("removing node after node");
             tempTopStackNode.next = tempTopStackNode.next.next;
         }
 
@@ -49,6 +50,31 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
 
     public void insertAfter(Node node) {
 
+    }
+
+    public void printLinkedList() {
+        Node tempTopStackNode = topStackNode;
+        while (tempTopStackNode != null) {
+            System.out.println(tempTopStackNode);
+            tempTopStackNode = tempTopStackNode.next;
+        }
+    }
+
+    public Node find(Item item) throws NullPointerException {
+        if (isEmpty()) {
+            throw new NullPointerException();
+        }
+        Node tempTopStackNode = topStackNode;
+        while (tempTopStackNode.item != item) {
+            tempTopStackNode = tempTopStackNode.next;
+        }
+        if (tempTopStackNode.item == item) {
+            N--;
+            System.out.println("Node was found, returning it");
+            return tempTopStackNode;
+        } else {
+            throw new NullPointerException();
+        }
     }
 
     public boolean isEmpty() {
@@ -59,12 +85,20 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
         return N;
     }
 
-    private class Node {
+    class Node {
         private Node next;
         private Item item;
 
         public boolean equals(Node node) {
             return (this.item == node.item && this.next == node.next);
         }
+
+        public String toString() {
+            return item.toString();
+        }
     }
+
+//    class NodeNotFoundException extends Throwable {
+//
+//    }
 }

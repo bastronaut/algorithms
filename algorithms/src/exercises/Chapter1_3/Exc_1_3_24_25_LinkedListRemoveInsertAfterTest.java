@@ -47,12 +47,21 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfterTest {
 
 
     @org.junit.Test
-    public void testRemoveAfter() {
+    public void testRemoveAfter() throws NullPointerException {
         Exc_1_3_24_25_LinkedListRemoveInsertAfter<String> stacktest = new Exc_1_3_24_25_LinkedListRemoveInsertAfter<>();
         stacktest.push("1");
         stacktest.push("2");
         stacktest.push("3");
         stacktest.push("4");
         stacktest.push("5");
+        // remove node after "3", which is "2";
+        Exc_1_3_24_25_LinkedListRemoveInsertAfter.Node tempThirdNode = stacktest.find("3");
+        stacktest.removeAfter(tempThirdNode);
+        stacktest.printLinkedList();
+        assertTrue(stacktest.size() == 4);
+        assertTrue(stacktest.pop() == "5");
+        assertTrue(stacktest.pop() == "4");
+        assertTrue(stacktest.pop() == "3");
+        assertTrue(stacktest.pop() == "1");
     }
 }

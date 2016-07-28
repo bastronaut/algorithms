@@ -8,6 +8,11 @@ package exercises.Chapter1_3;
  * 1.3.25 Write a method insertAfter() that takes two linked-list
  * Node arguments and inserts the second after the ﬁrst on its
  * list (and does nothing if either argument is null).
+ *
+ * -> Not fully clear, will be implemented as: if the first Node is
+ * present in the linked list, add the second node after it.
+ * If it is not present, do nothing.
+ *
 
  */
 public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
@@ -42,14 +47,24 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
             tempTopStackNode = tempTopStackNode.next;
         }
         if (tempTopStackNode.equals(node)) {
-            System.out.println("removing node after node");
             tempTopStackNode.next = tempTopStackNode.next.next;
         }
 
     }
 
-    public void insertAfter(Node node) {
-
+    public void insertAfter(Node node, Node insertNode) throws NullPointerException{
+        if (node== null || insertNode == null) { throw new NullPointerException("nodes cannot be null"); }
+        if (isEmpty()) { throw new NullPointerException("linked list is empty"); }
+        Node tempTopStackNode = topStackNode;
+        while (!tempTopStackNode.equals(node)) {
+            tempTopStackNode = tempTopStackNode.next;
+        }
+        if (tempTopStackNode.equals(node)) {
+            insertNode.next = tempTopStackNode.next;
+            tempTopStackNode.next = insertNode;
+        } else {
+            throw new NullPointerException();
+        }
     }
 
     public void printLinkedList() {
@@ -70,7 +85,6 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
         }
         if (tempTopStackNode.item == item) {
             N--;
-            System.out.println("Node was found, returning it");
             return tempTopStackNode;
         } else {
             throw new NullPointerException();

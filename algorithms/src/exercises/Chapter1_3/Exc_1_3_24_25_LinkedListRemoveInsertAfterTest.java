@@ -3,6 +3,7 @@ package exercises.Chapter1_3;
 import static org.junit.Assert.*;
 
 /**
+ * TODO: check if you can instantiate another class' inner class
  *
  */
 public class Exc_1_3_24_25_LinkedListRemoveInsertAfterTest {
@@ -45,7 +46,6 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfterTest {
         assertTrue(stacktest.isEmpty());
     }
 
-
     @org.junit.Test
     public void testRemoveAfter() throws NullPointerException {
         Exc_1_3_24_25_LinkedListRemoveInsertAfter<String> stacktest = new Exc_1_3_24_25_LinkedListRemoveInsertAfter<>();
@@ -55,13 +55,38 @@ public class Exc_1_3_24_25_LinkedListRemoveInsertAfterTest {
         stacktest.push("4");
         stacktest.push("5");
         // remove node after "3", which is "2";
-        Exc_1_3_24_25_LinkedListRemoveInsertAfter.Node tempThirdNode = stacktest.find("3");
-        stacktest.removeAfter(tempThirdNode);
-        stacktest.printLinkedList();
+        Exc_1_3_24_25_LinkedListRemoveInsertAfter.Node thirdNode = stacktest.find("3");
+        stacktest.removeAfter(thirdNode);
         assertTrue(stacktest.size() == 4);
         assertTrue(stacktest.pop() == "5");
         assertTrue(stacktest.pop() == "4");
         assertTrue(stacktest.pop() == "3");
         assertTrue(stacktest.pop() == "1");
+        stacktest.push("1");
+        stacktest.push("2");
+        stacktest.push("3");
+        stacktest.push("4");
+        stacktest.push("5");
+        Exc_1_3_24_25_LinkedListRemoveInsertAfter.Node fifthNode = stacktest.find("5");
+        stacktest.removeAfter(fifthNode);
+        assertTrue(stacktest.pop() == "5");
+        assertTrue(stacktest.pop() == "3");
+    }
+
+    @org.junit.Test
+    public void testInsertAfter() throws NullPointerException {
+        Exc_1_3_24_25_LinkedListRemoveInsertAfter<String> stacktest = new Exc_1_3_24_25_LinkedListRemoveInsertAfter<>();
+        stacktest.push("1");
+        stacktest.push("2");
+        stacktest.push("3");
+        stacktest.push("4");
+        stacktest.push("5");
+        Exc_1_3_24_25_LinkedListRemoveInsertAfter.Node thirdNode = stacktest.find("3");
+        Exc_1_3_24_25_LinkedListRemoveInsertAfter.Node fourthNode = stacktest.find("4");
+        stacktest.removeAfter(fourthNode);
+        stacktest.insertAfter(fourthNode, thirdNode);
+        assertTrue(stacktest.pop().equals("5"));
+        assertTrue(stacktest.pop().equals("4"));
+        assertTrue(stacktest.pop().equals("3"));
     }
 }

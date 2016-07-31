@@ -23,7 +23,7 @@ public class Exc_1_3_27LinkedListMaxQueue <Item> {
         N = 0;
     }
 
-    public void enqueue(Item item) {
+    public void enqueueTwo(Item item) {
         Node oldBackNode = backQueueNode;
         backQueueNode = new Node();
         backQueueNode.item = item;
@@ -34,6 +34,19 @@ public class Exc_1_3_27LinkedListMaxQueue <Item> {
         } else {
             oldBackNode.next = backQueueNode;
         }
+    }
+
+    public void enqueue(Item item) {
+        Node newBackQueueNode = new Node();
+        newBackQueueNode.item = item;
+        newBackQueueNode.next = null;
+        N++;
+        if (frontQueueNode == null ) {
+            frontQueueNode = newBackQueueNode;
+        } else {
+            backQueueNode.next = newBackQueueNode;
+        }
+        backQueueNode = newBackQueueNode;
     }
 
     public Item dequeue() {

@@ -10,14 +10,16 @@ package exercises.Chapter1_3;
  Assume that all keys are  positive integers, and return 0 if the list is empty
 
  Simple iteration and keeping the highest integer..
+
+ 1.3.28 Develop a recursive solution to the previous question
  */
-public class Exc_1_3_27LinkedListMaxQueue <Item> {
+public class Exc_1_3_27_28LinkedListMaxQueue<Item> {
 
     Node frontQueueNode; // returned on enqueue
     Node backQueueNode; // last node in the linkedlist
     int N;
 
-    public Exc_1_3_27LinkedListMaxQueue() {
+    public Exc_1_3_27_28LinkedListMaxQueue() {
         frontQueueNode = null;
         backQueueNode = null;
         N = 0;
@@ -83,10 +85,41 @@ public class Exc_1_3_27LinkedListMaxQueue <Item> {
         return max;
     }
 
+    // given the frontqueuenode, find the maximum key recursively
+    public int recursiveMax() {
+        int max = getRecursiveMax(frontQueueNode, 0);
+        return max;
+    }
+
+    public int getRecursiveMax(Node node, int currentMax) {
+        int i = getIntFromNode(node);
+        if (i > currentMax) {
+            currentMax = i;
+        }
+        if (node.next == null) {
+            return currentMax;
+        } else {
+            return getRecursiveMax(node.next, currentMax);
+        }
+    }
+
+    public int getIntFromNode(Node node) {
+        int i;
+        try {
+            i = (Integer) node.item;
+        } catch (ClassCastException e) {
+            i = 0;
+        }
+        return i;
+    }
 
     private class Node {
         Item item;
         Node next;
+
+        public String toString() {
+            return ""+ item;
+        }
     }
 
 }

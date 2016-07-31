@@ -87,8 +87,7 @@ public class Exc_1_3_27_28LinkedListMaxQueue<Item> {
 
     // given the frontqueuenode, find the maximum key recursively
     public int recursiveMax() {
-        int max = getRecursiveMax(frontQueueNode, 0);
-        return max;
+        return getRecursiveMax(frontQueueNode, 0);
     }
 
     public int getRecursiveMax(Node node, int currentMax) {
@@ -97,7 +96,7 @@ public class Exc_1_3_27_28LinkedListMaxQueue<Item> {
             currentMax = i;
         }
         if (node.next == null) {
-            return currentMax;
+             return currentMax;
         } else {
             return getRecursiveMax(node.next, currentMax);
         }

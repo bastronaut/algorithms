@@ -57,13 +57,13 @@ public class Exc_1_3_21_LinkedListFindTest {
         stacktest.push("3");
         stacktest.push("4");
         stacktest.push("5");
-        assertTrue(stacktest.find(stacktest, "3"));
-        assertTrue(stacktest.find(stacktest, "1"));
-        assertTrue(stacktest.find(stacktest, "0"));
-        assertTrue(stacktest.find(stacktest, "5"));
-        assertFalse(stacktest.find(stacktest, "99999"));
-        assertFalse(stacktest.find(stacktest, "9"));
-        assertFalse(stacktest.find(stacktest, "hjhgjhk"));
+        assertTrue(stacktest.find("3"));
+        assertTrue(stacktest.find("1"));
+        assertTrue(stacktest.find("0"));
+        assertTrue(stacktest.find("5"));
+        assertFalse(stacktest.find("99999"));
+        assertFalse(stacktest.find("9"));
+        assertFalse(stacktest.find("hjhgjhk"));
     }
 
 }

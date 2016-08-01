@@ -40,7 +40,11 @@ public class Exc_1_3_21_LinkedListFind<Item> {
         return N;
     }
 
-    public boolean find(Exc_1_3_21_LinkedListFind<Item> LinkedList, String key) {
+
+    // note; does not accept a linkedlist as argument.
+    // could have instead made a getter function for topstacknode, and implement
+    // with the topstacknode. Now instead it uses the instantiated object
+    public boolean find(String key) {
         Node tempTopStackNode = topStackNode;
         boolean found = false;
         while (tempTopStackNode != null) {

@@ -15,12 +15,17 @@ package exercises.Chapter1_3;
  *
 
  */
+
+
+
 public class Exc_1_3_24_25_LinkedListRemoveInsertAfter <Item> {
 
     private Node topStackNode;
     private int N;
 
-    public Item pop() {
+
+    public Item pop() throws NullPointerException {
+
         if (isEmpty()) {
             throw new NullPointerException();
         }

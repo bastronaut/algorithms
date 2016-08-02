@@ -11,7 +11,7 @@ public class Exc_1_3_29_CircularLinkedListQueue <Item> {
     int N;
     Node lastNode;
 
-    
+
     public Exc_1_3_29_CircularLinkedListQueue() {
         N = 0;
         lastNode = null;

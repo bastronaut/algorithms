@@ -9,54 +9,35 @@ import static org.junit.Assert.*;
  */
 public class Exc_1_3_31_DoublyLinkedListTest {
 
-    @Test
-    public void testEnqueue() {
-        Exc_1_3_31_DoublyLinkedList<String> queue = new Exc_1_3_31_DoublyLinkedList<>();
-        assertTrue(queue.size() == 0);
-        queue.enqueue("hi");
-        queue.enqueue("there");
-        queue.enqueue("how");
-        assertTrue(queue.size() == 3);
-        queue.enqueue("are");
-        queue.enqueue("you");
-        assertTrue(queue.printLinkedList().equals("hi; there; how; are; you; "));
-        assertTrue(queue.size() == 5);
-        queue.dequeue();
-        assertTrue(queue.size() == 4);
-        queue.dequeue();
-        queue.dequeue();
-        queue.enqueue("test");
-        assertTrue(queue.size() == 3);
-        assertTrue(queue.printLinkedList().equals("are; you; test; "));
-    }
-
-    @Test
-    public void testDequeue() {
-        Exc_1_3_31_DoublyLinkedList<String> queue = new Exc_1_3_31_DoublyLinkedList<>();
-        queue.enqueue("hi");
-        assertTrue(queue.dequeue() == "hi");
-        assertTrue(queue.size() == 0);
-        queue.enqueue("hi");
-        queue.enqueue("how");
-        queue.enqueue("are");
-        assertTrue(queue.dequeue().equals("hi"));
-        assertTrue(queue.printLinkedList().equals("how; are; "));
-        assertTrue(queue.size() == 2);
-        assertTrue(queue.dequeue() == "how");
-        assertTrue(queue.size() == 1);
-        assertFalse(queue.isEmpty());
-        assertTrue(queue.dequeue() == "are");
-        assertTrue(queue.size() == 0);
-        assertTrue(queue.isEmpty());
-    }
 
     @Test
     public void testInsertAtBeginning() throws Exception {
-
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(3);
+        assertTrue(dll.toString().equals("3"));
+        dll.insertAtBeginning(2);
+        assertTrue(dll.toString().equals("23"));
+        dll.insertAtBeginning(1);
+        assertTrue(dll.toString().equals("123"));
+        dll.insertAtEnd(1);
+        assertTrue(dll.toString().equals("1231"));
+        dll.insertAtBeginning(0);
+        assertTrue(dll.toString().equals("01231"));
     }
 
     @Test
     public void testInsertAtEnd() throws Exception {
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtEnd(3);
+        assertTrue(dll.toString().equals("3"));
+        dll.insertAtEnd(2);
+        assertTrue(dll.toString().equals("32"));
+        dll.insertAtEnd(1);
+        assertTrue(dll.toString().equals("321"));
+        dll.insertAtBeginning(0);
+        assertTrue(dll.toString().equals("0321"));
+        dll.insertAtEnd(0);
+        assertTrue(dll.toString().equals("03210"));
 
     }
 

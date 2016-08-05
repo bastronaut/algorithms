@@ -11,8 +11,8 @@ package exercises.Chapter1_3;
 public class Exc_1_3_31_DoublyLinkedList <Item> {
 
     private int N;
-    private Node firstQueueNode;
-    private Node lastQueueNode;
+    private DoubleNode firstQueueNode;
+    private DoubleNode lastQueueNode;
 
     public Exc_1_3_31_DoublyLinkedList() {
         this.N = 0;
@@ -20,29 +20,6 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         lastQueueNode = null;
     }
 
-    public void enqueue(Item item) {
-        Node newNode = new Node();
-        newNode.item = item;
-        newNode.previous = null;
-        if (isEmpty()) {
-            firstQueueNode = newNode;
-        } else {
-            newNode.next = lastQueueNode;
-        }
-        lastQueueNode.previous = newNode;
-        lastQueueNode = newNode;
-        N++;
-    }
-
-    public Item dequeue() {
-        if (isEmpty()) {
-            throw new NullPointerException();
-        }
-        N--;
-        Item returnItem = firstQueueNode.item;
-        firstQueueNode = firstQueueNode.next;
-        return returnItem;
-    }
 
     public int size() {
         return N;
@@ -52,12 +29,33 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         return firstQueueNode == null;
     }
 
-    public void insertAtBeginning() {
+    public void insertAtBeginning(Item item) {
+        DoubleNode node = new DoubleNode();
+        node.item = item;
 
+        if (isEmpty()) {
+            firstQueueNode = node;
+            lastQueueNode = node;
+        } else {
+            node.next = firstQueueNode;
+            firstQueueNode.previous = node;
+            firstQueueNode = node;
+        }
+        N++;
     }
 
-    public void insertAtEnd() {
-
+    public void insertAtEnd(Item item) {
+        DoubleNode node = new DoubleNode();
+        node.item = item;
+        if (isEmpty()) {
+            firstQueueNode = node;
+            lastQueueNode = node;
+        } else {
+            node.previous = lastQueueNode;
+            lastQueueNode.next = node;
+            lastQueueNode = node;
+        }
+        N++;
     }
 
     public void removeAtBeginning() {
@@ -68,17 +66,35 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
 
     }
 
-    public void removeNode(Node node) {
+    public void insertBeforeNode(DoubleNode beforeNode, Item item) {
 
     }
 
-    public String printLinkedList() {
-        return "";
+    public void insertAfterNode(DoubleNode afterNode, Item item) {
+
     }
 
-    private class Node {
-        Node next;
-        Node previous;
+    public void removeNode(DoubleNode node) {
+
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        DoubleNode tempFirstQueueNode = firstQueueNode;
+        while (tempFirstQueueNode != null) {
+            sb.append(tempFirstQueueNode.toString());
+            tempFirstQueueNode = tempFirstQueueNode.next;
+        }
+        return sb.toString();
+    }
+
+    private class DoubleNode {
+        DoubleNode next;
+        DoubleNode previous;
         Item item;
+
+        public String toString() {
+            return item.toString();
+        }
     }
 }

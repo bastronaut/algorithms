@@ -41,11 +41,11 @@ public class Exc_1_3_33_Deque <Item> {
     }
 
     public Item popLeft() {
-
+        return null;
     }
 
     public Item popRight() {
-
+        return null;
     }
 
     public int size() {
@@ -53,7 +53,7 @@ public class Exc_1_3_33_Deque <Item> {
     }
 
     public boolean isEmpty() {
-
+        return N == 0;
     }
 
 

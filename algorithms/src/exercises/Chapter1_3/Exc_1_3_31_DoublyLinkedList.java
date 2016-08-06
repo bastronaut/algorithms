@@ -58,12 +58,37 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         N++;
     }
 
-    public void removeAtBeginning() {
-
+    public Item removeAtBeginning() {
+        if (isEmpty()) {
+            throw new NullPointerException("queue is empty");
+        }
+        Item returnItem = firstQueueNode.item;
+        if (firstQueueNode.next == null) {
+            firstQueueNode = null;
+            lastQueueNode = null;
+        } else {
+            firstQueueNode.next.previous = null;
+            firstQueueNode = firstQueueNode.next;
+        }
+        N--;
+        System.out.println("returning:" + returnItem);
+        return returnItem;
     }
 
-    public void removeAtEnd() {
-
+    public Item removeAtEnd() {
+        if (isEmpty()) {
+            throw new NullPointerException("queue is empty");
+        }
+        Item returnItem = lastQueueNode.item;
+        if (lastQueueNode.previous == null) {
+            lastQueueNode = null;
+            firstQueueNode = null;
+        } else {
+            lastQueueNode.previous.next = null;
+            lastQueueNode = lastQueueNode.previous;
+        }
+        N--;
+        return returnItem;
     }
 
     public void insertBeforeNode(DoubleNode beforeNode, Item item) {

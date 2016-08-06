@@ -75,7 +75,39 @@ public class Exc_1_3_31_DoublyLinkedListTest {
     }
 
     @Test
+    public void testGetNthNode() throws Exception {
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(3);
+        dll.insertAtBeginning(2);
+        dll.insertAtBeginning(1);
+        dll.insertAtBeginning(0);
+        assertTrue(dll.getNthDoubleNode(1).toString().equals("1"));
+        assertTrue(dll.getNthDoubleNode(3).toString().equals("3"));
+    }
+
+    @Test
     public void testRemoveNode() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertBeforeNode() throws Exception {
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(6); // first get this node to put before
+        dll.insertAtBeginning(4); // then this node to put before
+        dll.insertAtBeginning(2);
+        dll.insertAtBeginning(1);
+        dll.insertAtBeginning(0);
+        Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(4);
+        dll.insertBeforeNode(node, 5);
+        assertTrue(dll.toString().equals("012456"));
+        node = dll.getNthDoubleNode(3);
+        dll.insertBeforeNode(node, 3);
+        assertTrue(dll.toString().equals("0123456"));
+    }
+
+    @Test
+    public void testinsertAfterNode() throws Exception {
 
     }
 

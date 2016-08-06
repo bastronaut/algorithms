@@ -71,7 +71,6 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
             firstQueueNode = firstQueueNode.next;
         }
         N--;
-        System.out.println("returning:" + returnItem);
         return returnItem;
     }
 
@@ -92,7 +91,10 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
     }
 
     public void insertBeforeNode(DoubleNode beforeNode, Item item) {
-
+        if (isEmpty()) {
+            throw new NullPointerException("linkedlist is empty, needs at least 1 node to insert before");
+        }
+        // TODO
     }
 
     public void insertAfterNode(DoubleNode afterNode, Item item) {
@@ -113,7 +115,23 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         return sb.toString();
     }
 
-    private class DoubleNode {
+    // a doublenode getter to get an object to pass into insertBeforeNode and insertAfterNode
+    public DoubleNode getNthDoubleNode(int n) {
+        if (n > N || n < 0) {
+            throw new NullPointerException("No nth element in the linked list for n: " + n);
+        }
+        int i = 0;
+        DoubleNode returnNode = firstQueueNode;
+
+        while (i < n) {
+            returnNode = returnNode.next;
+            i++;
+        }
+        System.out.println(returnNode);
+        return returnNode;
+    }
+
+    public class DoubleNode {
         DoubleNode next;
         DoubleNode previous;
         Item item;

@@ -90,9 +90,12 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         return returnItem;
     }
 
+    // Can insert an arbitrary node before a given node if it is in the
+    // instance's LinkedList. If it is not in the instance's LL, it will
+    // throw an exception
     public void insertBeforeNode(DoubleNode beforeNode, Item item) {
         if (isEmpty()) {
-            throw new NullPointerException("linkedlist is empty, needs at least 1 node to insert before");
+            throw new NullPointerException("Linked list is empty!");
         }
         DoubleNode node = firstQueueNode;
         while (node != beforeNode && node.next != null) {
@@ -109,15 +112,38 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
                 beforeNode.previous.next = newNode;
             }
             beforeNode.previous = newNode;
+            N++;
         } else {
             throw new NullPointerException("node is not in LL");
         }
     }
 
+    // Will not find the node in the linkedlist, simply insert it before
+    // the given node and assume that the given node is in the instance's LinkedList
+    public void insertBeforeNodeTwo(DoubleNode beforeNode, Item item) {
+        if (isEmpty()) {
+            throw new NullPointerException("Linked list is empty!");
+        }
+        DoubleNode node = new DoubleNode();
+        node.item = item;
+        node.next = beforeNode;
+        node.previous = beforeNode.previous;
 
+        if (beforeNode == firstQueueNode) {
+            firstQueueNode = node;
+        } else {
+            beforeNode.previous.next = node;
+            beforeNode.previous = node;
+        }
+        N++;
+    }
+
+    // Can insert an arbitrary node after a given node if it is in the
+    // instance's LinkedList. If it is not in the instance's LL, it will
+    // throw an exception
     public void insertAfterNode(DoubleNode afterNode, Item item) {
         if (isEmpty()) {
-            throw new NullPointerException();
+            throw new NullPointerException("Linked list is empty!");
         }
         DoubleNode node = firstQueueNode;
         while (node != afterNode && node.next != null) {
@@ -141,8 +167,32 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
 
     }
 
-    public void removeNode(DoubleNode node) {
+    // Will not find the node in the linkedlist, simply insert it after
+    // the given node and assume that the given node is in the instance's LinkedList
+    public void insertAfterNodeTwo(DoubleNode afterNode, Item item) {
+        if (isEmpty()) {
+            throw new NullPointerException("Linked list is empty!");
+        }
+        DoubleNode insertNode = new DoubleNode();
+        insertNode.item = item;
+        insertNode.next = afterNode.next;
+        insertNode.previous = afterNode;
+        afterNode.next = insertNode;
+        if (afterNode == lastQueueNode) {
+            lastQueueNode = insertNode;
+        } else {
+            afterNode.next.previous = insertNode;
+        }
+        N++;
+    }
 
+    public void removeNode(DoubleNode removeNode) {
+        if (isEmpty()) {
+            throw new NullPointerException("Linked list is empty!");
+        }
+        DoubleNode node = firstQueueNode;
+
+        N--;
     }
 
     public String toString() {

@@ -111,7 +111,27 @@ public class Exc_1_3_31_DoublyLinkedListTest {
     }
 
     @Test
-    public void testinsertAfterNode() throws Exception {
+    public void testInsertBeforeNodeTwo() throws Exception {
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(6); // first get this node to put before
+        dll.insertAtBeginning(4); // then this node to put before
+        dll.insertAtBeginning(2);
+        dll.insertAtBeginning(1);
+        dll.insertAtBeginning(0);
+        Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(4);
+        dll.insertBeforeNodeTwo(node, 5);
+        System.out.println(dll.toString());
+        assertTrue(dll.toString().equals("012456"));
+        node = dll.getNthDoubleNode(3);
+        dll.insertBeforeNodeTwo(node, 3);
+        assertTrue(dll.toString().equals("0123456"));
+        node = dll.getNthDoubleNode(0);
+        dll.insertBeforeNodeTwo(node, -1);
+        assertTrue(dll.toString().equals("-10123456"));
+    }
+
+    @Test
+    public void testInsertAfterNode() throws Exception {
         Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
         dll.insertAtBeginning(6);
         dll.insertAtBeginning(4); // then this node to put before
@@ -126,6 +146,25 @@ public class Exc_1_3_31_DoublyLinkedListTest {
         assertTrue(dll.toString().equals("0123456"));
         node = dll.getNthDoubleNode(6);
         dll.insertAfterNode(node, 7);
+        assertTrue(dll.toString().equals("01234567"));
+    }
+
+    @Test
+    public void testInsertAfterNodeTwo() throws Exception {
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(6);
+        dll.insertAtBeginning(4); // then this node to put before
+        dll.insertAtBeginning(2); // first get this node to put before
+        dll.insertAtBeginning(1);
+        dll.insertAtBeginning(0);
+        Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(2);
+        dll.insertAfterNodeTwo(node, 3);
+        assertTrue(dll.toString().equals("012346"));
+        node = dll.getNthDoubleNode(4);
+        dll.insertAfterNodeTwo(node, 5);
+        assertTrue(dll.toString().equals("0123456"));
+        node = dll.getNthDoubleNode(6);
+        dll.insertAfterNodeTwo(node, 7);
         assertTrue(dll.toString().equals("01234567"));
     }
 

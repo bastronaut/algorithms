@@ -94,34 +94,51 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         if (isEmpty()) {
             throw new NullPointerException("linkedlist is empty, needs at least 1 node to insert before");
         }
-        // TODO
+        DoubleNode node = firstQueueNode;
+        while (node != beforeNode && node.next != null) {
+            node = node.next;
+        }
+        if (node == beforeNode) {
+            DoubleNode newNode = new DoubleNode();
+            newNode.item = item;
+            newNode.next = beforeNode;
+            newNode.previous = beforeNode.previous;
+            if (beforeNode == firstQueueNode) {
+                firstQueueNode = newNode;
+            } else {
+                beforeNode.previous.next = newNode;
+            }
+            beforeNode.previous = newNode;
+        } else {
+            throw new NullPointerException("node is not in LL");
+        }
     }
 
 
     public void insertAfterNode(DoubleNode afterNode, Item item) {
         if (isEmpty()) {
             throw new NullPointerException();
-        } else {
-            DoubleNode node = firstQueueNode;
-            while (node != afterNode && node.next != null) {
-                node = node.next;
-            }
-            if (node.equals(afterNode)) {
-                DoubleNode insertNode = new DoubleNode();
-                insertNode.item = item;
-                insertNode.next = node.next;
-                insertNode.previous = node;
-                if (node == lastQueueNode) {
-                    lastQueueNode = insertNode;
-                } else {
-                    node.next.previous = insertNode;
-                }
-                node.next = insertNode;
-                N++;
-            } else {
-                throw new NullPointerException("node was not found in LL");
-            }
         }
+        DoubleNode node = firstQueueNode;
+        while (node != afterNode && node.next != null) {
+            node = node.next;
+        }
+        if (node.equals(afterNode)) {
+            DoubleNode insertNode = new DoubleNode();
+            insertNode.item = item;
+            insertNode.next = node.next;
+            insertNode.previous = node;
+            node.next = insertNode;
+            if (node == lastQueueNode) {
+                lastQueueNode = insertNode;
+            } else {
+                node.next.previous = insertNode;
+            }
+            N++;
+        } else {
+            throw new NullPointerException("node was not found in LL");
+        }
+
     }
 
     public void removeNode(DoubleNode node) {

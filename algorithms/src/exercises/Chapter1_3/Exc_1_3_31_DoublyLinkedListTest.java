@@ -100,10 +100,14 @@ public class Exc_1_3_31_DoublyLinkedListTest {
         dll.insertAtBeginning(0);
         Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(4);
         dll.insertBeforeNode(node, 5);
+        System.out.println(dll.toString());
         assertTrue(dll.toString().equals("012456"));
         node = dll.getNthDoubleNode(3);
         dll.insertBeforeNode(node, 3);
         assertTrue(dll.toString().equals("0123456"));
+        node = dll.getNthDoubleNode(0);
+        dll.insertBeforeNode(node, -1);
+        assertTrue(dll.toString().equals("-10123456"));
     }
 
     @Test
@@ -116,12 +120,10 @@ public class Exc_1_3_31_DoublyLinkedListTest {
         dll.insertAtBeginning(0);
         Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(2);
         dll.insertAfterNode(node, 3);
-        System.out.println(dll.toString());
         assertTrue(dll.toString().equals("012346"));
         node = dll.getNthDoubleNode(4);
         dll.insertAfterNode(node, 5);
         assertTrue(dll.toString().equals("0123456"));
-        System.out.println(dll.toString());
         node = dll.getNthDoubleNode(6);
         dll.insertAfterNode(node, 7);
         assertTrue(dll.toString().equals("01234567"));

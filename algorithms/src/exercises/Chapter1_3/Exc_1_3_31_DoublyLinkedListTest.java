@@ -108,7 +108,23 @@ public class Exc_1_3_31_DoublyLinkedListTest {
 
     @Test
     public void testinsertAfterNode() throws Exception {
-
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(6);
+        dll.insertAtBeginning(4); // then this node to put before
+        dll.insertAtBeginning(2); // first get this node to put before
+        dll.insertAtBeginning(1);
+        dll.insertAtBeginning(0);
+        Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(2);
+        dll.insertAfterNode(node, 3);
+        System.out.println(dll.toString());
+        assertTrue(dll.toString().equals("012346"));
+        node = dll.getNthDoubleNode(4);
+        dll.insertAfterNode(node, 5);
+        assertTrue(dll.toString().equals("0123456"));
+        System.out.println(dll.toString());
+        node = dll.getNthDoubleNode(6);
+        dll.insertAfterNode(node, 7);
+        assertTrue(dll.toString().equals("01234567"));
     }
 
     @Test

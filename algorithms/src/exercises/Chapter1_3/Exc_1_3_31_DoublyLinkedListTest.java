@@ -87,7 +87,22 @@ public class Exc_1_3_31_DoublyLinkedListTest {
 
     @Test
     public void testRemoveNode() throws Exception {
-
+        Exc_1_3_31_DoublyLinkedList<Integer> dll = new Exc_1_3_31_DoublyLinkedList<>();
+        dll.insertAtBeginning(4);
+        dll.insertAtBeginning(3);
+        dll.insertAtBeginning(2);
+        dll.insertAtBeginning(1);
+        dll.insertAtBeginning(0);
+        Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(2);
+        dll.removeNode(node);
+        assertTrue(dll.toString().equals("0134"));
+        node = dll.getNthDoubleNode(0);
+        dll.removeNode(node);
+        System.out.println(dll);
+        assertTrue(dll.toString().equals("134"));
+        node = dll.getNthDoubleNode(2);
+        dll.removeNode(node);
+        assertTrue(dll.toString().equals("13"));
     }
 
     @Test
@@ -100,7 +115,6 @@ public class Exc_1_3_31_DoublyLinkedListTest {
         dll.insertAtBeginning(0);
         Exc_1_3_31_DoublyLinkedList.DoubleNode node = dll.getNthDoubleNode(4);
         dll.insertBeforeNode(node, 5);
-        System.out.println(dll.toString());
         assertTrue(dll.toString().equals("012456"));
         node = dll.getNthDoubleNode(3);
         dll.insertBeforeNode(node, 3);

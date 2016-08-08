@@ -7,6 +7,8 @@ package exercises.Chapter1_3;
  tasks: insert at the beginning, insert at the end, remove from the beginning, remove
  from the end, insert before a given node, insert after a given node, and remove a given
  node.
+
+ not implemented as static
  */
 public class Exc_1_3_31_DoublyLinkedList <Item> {
 
@@ -186,12 +188,24 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
         N++;
     }
 
-    public void removeNode(DoubleNode removeNode) {
+    // assumes that the give node is in the linkedlist and
+    // reduces the instance's N value
+    public void removeNode(DoubleNode node) {
         if (isEmpty()) {
             throw new NullPointerException("Linked list is empty!");
         }
-        DoubleNode node = firstQueueNode;
-
+        // Pay attention to edge cases for first and last node in LL
+        // to prevent nullpoiner exceptions
+        if (node == lastQueueNode) {
+            node.previous.next = null;
+            lastQueueNode = node.previous;
+        } else if (node == firstQueueNode) {
+            node.next.previous = null;
+            firstQueueNode = node.next;
+        } else {
+            node.next.previous = node.previous;
+            node.previous.next = node.next;
+        }
         N--;
     }
 

@@ -18,26 +18,45 @@ package exercises.Chapter1_3;
  implement this API and a class ResizingArrayDeque that
  uses a resizing array.
 
-
  */
 public class Exc_1_3_33_Deque <Item> {
 
     private int N;
-    private Node leftNode;
-    private Node rightNode;
+    private Node frontNode;
+    private Node lastNode;
 
     public Exc_1_3_33_Deque () {
         this.N = 0;
-        leftNode = null;
-        rightNode = null;
+        frontNode = null;
+        lastNode = null;
     }
 
+    // push to front of the deque, before he front node
     public void pushLeft(Item item) {
-
+        Node node = new Node();
+        node.item = item;
+        if (isEmpty()) {
+            lastNode = node;
+        } else {
+            node.next = frontNode;
+            frontNode.previous = node;
+        }
+        frontNode = node;
+        N++;
     }
 
+    // push to back of the deque, behind the last node
     public void pushRight(Item item) {
-
+        Node node = new Node();
+        node.item = item;
+        if (isEmpty()) {
+            frontNode = node;
+        } else {
+            node.previous = frontNode;
+            lastNode.next = node;
+        }
+        lastNode = node;
+        N++;
     }
 
     public Item popLeft() {
@@ -57,9 +76,23 @@ public class Exc_1_3_33_Deque <Item> {
     }
 
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node node = frontNode;
+        while (node != null) {
+            sb.append(node);
+            node = node.next;
+        }
+        return sb.toString();
+    }
+
     private class Node {
         Item item;
         Node next;
         Node previous;
+
+        public String toString() {
+            return item.toString();
+        }
     }
 }

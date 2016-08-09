@@ -11,11 +11,27 @@ public class Exc_1_3_33_DequeTest {
     @Test
     public void pushLeft() throws Exception {
         Exc_1_3_33_Deque<Integer> deque = new Exc_1_3_33_Deque<>();
+        deque.pushLeft(3);
+        assertTrue(deque.toString().equals("3"));
+        deque.pushLeft(2);
+        deque.pushLeft(1);
+        deque.pushLeft(0);
+        assertTrue(deque.toString().equals("0123"));
+        deque.pushLeft(-1);
+        assertTrue(deque.toString().equals("-10123"));
     }
 
     @Test
     public void pushRight() throws Exception {
         Exc_1_3_33_Deque<Integer> deque = new Exc_1_3_33_Deque<>();
+        deque.pushRight(3);
+        assertTrue(deque.toString().equals("3"));
+        deque.pushRight(2);
+        deque.pushRight(1);
+        deque.pushRight(0);
+        assertTrue(deque.toString().equals("3210"));
+        deque.pushRight(-1);
+        assertTrue(deque.toString().equals("3210-1"));
     }
 
     @Test

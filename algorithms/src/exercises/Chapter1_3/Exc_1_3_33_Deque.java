@@ -52,7 +52,7 @@ public class Exc_1_3_33_Deque <Item> {
         if (isEmpty()) {
             frontNode = node;
         } else {
-            node.previous = frontNode;
+            node.previous = lastNode;
             lastNode.next = node;
         }
         lastNode = node;
@@ -60,11 +60,35 @@ public class Exc_1_3_33_Deque <Item> {
     }
 
     public Item popLeft() {
-        return null;
+        if (isEmpty()) {
+            throw new NullPointerException("Deque is empty");
+        }
+        Item returnItem = frontNode.item;
+        if (frontNode == lastNode) {
+            frontNode = null;
+            lastNode = null;
+        } else {
+            frontNode.next.previous = null;
+            frontNode = frontNode.next;
+        }
+        N--;
+        return returnItem;
     }
 
     public Item popRight() {
-        return null;
+        if (isEmpty()) {
+            throw new NullPointerException("Deque is empty");
+        }
+        Item returnItem = lastNode.item;
+        if (frontNode == lastNode) {
+            frontNode = null;
+            lastNode = null;
+        } else {
+            lastNode.previous.next = null;
+            lastNode = lastNode.previous;
+        }
+        N--;
+        return returnItem;
     }
 
     public int size() {

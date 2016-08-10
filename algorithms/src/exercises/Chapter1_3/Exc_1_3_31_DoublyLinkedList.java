@@ -190,10 +190,11 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
 
     // assumes that the give node is in the linkedlist and
     // reduces the instance's N value
-    public void removeNode(DoubleNode node) {
+    public Item removeNode(DoubleNode node) {
         if (isEmpty()) {
             throw new NullPointerException("Linked list is empty!");
         }
+        Item returnItem = node.item;
         // Pay attention to edge cases for first and last node in LL
         // to prevent nullpoiner exceptions
         if (node == lastQueueNode) {
@@ -207,6 +208,7 @@ public class Exc_1_3_31_DoublyLinkedList <Item> {
             node.previous.next = node.next;
         }
         N--;
+        return returnItem;
     }
 
     public String toString() {

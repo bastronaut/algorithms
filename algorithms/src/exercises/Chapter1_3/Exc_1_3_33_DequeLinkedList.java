@@ -19,13 +19,13 @@ package exercises.Chapter1_3;
  uses a resizing array.
 
  */
-public class Exc_1_3_33_Deque <Item> {
+public class Exc_1_3_33_DequeLinkedList<Item> {
 
     private int N;
     private Node frontNode;
     private Node lastNode;
 
-    public Exc_1_3_33_Deque () {
+    public Exc_1_3_33_DequeLinkedList() {
         this.N = 0;
         frontNode = null;
         lastNode = null;

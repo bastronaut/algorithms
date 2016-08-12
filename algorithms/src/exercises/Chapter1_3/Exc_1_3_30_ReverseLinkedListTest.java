@@ -69,7 +69,5 @@ public class Exc_1_3_30_ReverseLinkedListTest {
         frontNode = queue.getFrontNode();
         queue.reverseLinkedList(frontNode);
         assertTrue(queue.toString().equals("3"));
-
-
     }
 }

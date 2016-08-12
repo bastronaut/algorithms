@@ -41,14 +41,22 @@ public class Exc_1_3_30_ReverseLinkedList <Item> {
         return returnItem;
     }
 
+    // kind of funky, this is not a static function
+    // so it would have been better to operate on the
+    // objects frontNode instead of the param.
+    // The param could be a non-front node... however this is
+    // what assignments wants so meh.
     public void reverseLinkedList(Node node) {
         if (isEmpty()) {
             throw new NullPointerException();
         }
-        lastNode = frontNode;
+        // when we're done, the last and first
+        // node will have been switched
+        lastNode = node;
+
         Node previousNode = null;
         Node nextNode = null;
-        Node currentNode = frontNode;
+        Node currentNode = node;
 
         while (currentNode != null) {
             nextNode = currentNode.next;

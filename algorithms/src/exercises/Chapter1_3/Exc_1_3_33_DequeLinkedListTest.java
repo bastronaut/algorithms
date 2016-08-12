@@ -7,10 +7,10 @@ import static org.junit.Assert.*;
 /**
  * Created by BSijtsma on 02-08-2016.
  */
-public class Exc_1_3_33_DequeTest {
+public class Exc_1_3_33_DequeLinkedListTest {
     @Test
     public void pushLeft() throws Exception {
-        Exc_1_3_33_Deque<Integer> deque = new Exc_1_3_33_Deque<>();
+        Exc_1_3_33_DequeLinkedList<Integer> deque = new Exc_1_3_33_DequeLinkedList<>();
         deque.pushLeft(3);
         assertTrue(deque.toString().equals("3"));
         deque.pushLeft(2);
@@ -23,7 +23,7 @@ public class Exc_1_3_33_DequeTest {
 
     @Test
     public void pushRight() throws Exception {
-        Exc_1_3_33_Deque<Integer> deque = new Exc_1_3_33_Deque<>();
+        Exc_1_3_33_DequeLinkedList<Integer> deque = new Exc_1_3_33_DequeLinkedList<>();
         deque.pushRight(3);
         assertTrue(deque.toString().equals("3"));
         deque.pushRight(2);
@@ -36,7 +36,7 @@ public class Exc_1_3_33_DequeTest {
 
     @Test
     public void popLeft() throws Exception {
-        Exc_1_3_33_Deque<Integer> deque = new Exc_1_3_33_Deque<>();
+        Exc_1_3_33_DequeLinkedList<Integer> deque = new Exc_1_3_33_DequeLinkedList<>();
         deque.pushRight(2);
         deque.pushRight(1);
         deque.pushRight(0);
@@ -55,7 +55,7 @@ public class Exc_1_3_33_DequeTest {
 
     @Test
     public void popRight() throws Exception {
-        Exc_1_3_33_Deque<Integer> deque = new Exc_1_3_33_Deque<>();deque.pushRight(2);
+        Exc_1_3_33_DequeLinkedList<Integer> deque = new Exc_1_3_33_DequeLinkedList<>();deque.pushRight(2);
         deque.pushRight(1);
         deque.pushRight(0);
         deque.pushLeft(3);

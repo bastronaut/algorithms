@@ -23,6 +23,53 @@ import java.lang.reflect.Array;
  */
 public class Exc_1_3_33_DequeResizingArray<Item> {
 
+    private int starterArraySize = 2;
+    private int N;
+    private int lastItemIndex;
+    private int firstItemIndex;
+    private Item[] deque;
+
+    public Exc_1_3_33_DequeResizingArray() {
+        this.N = 0;
+        this .lastItemIndex = 0;
+        this.firstItemIndex = 0;
+        deque = (Item[]) new Object[starterArraySize];
+    }
+
+    public void pushLeft(Item item) {
+
+        N++;
+    }
+
+    public void pushRight(Item item) {
+
+        N++;
+    }
+
+    // TODO: think about checking if firstindex is bigger than second and what that means
+    // TODO: verify nullpointerexceptions
+    // TODO: check for isEmpty
+    // TODO: Maybe phase out int N, its duplicate information so not quite needed but its convenient
+    public Item popLeft() {
+        Item returnItem = deque[firstItemIndex];
+        firstItemIndex++;
+        N--;
+        return returnItem;
+    }
+
+    public Item popRight() {
+        Item returnItem = deque[lastItemIndex];
+        lastItemIndex--;
+        N--;
+        return returnItem;
+    }
+    // TODO end todo
+
+    public boolean isEmpty() {
+        return N == 0;
+    }
+
+    public int size() { return N; }
 
     private Array[] resize(int size) {
         Array newArray[] = new Array[size];

@@ -62,9 +62,7 @@ public class Exc_1_3_33_DequeResizingArrayTest {
         deque.pushLeft(3);
         deque.pushLeft(4);
         assertTrue(deque.toString().equals("43210"));
-        System.out.println(deque);
         assertTrue(deque.popRight() == 0);
-        System.out.println(deque);
         assertTrue(deque.toString().equals("4321"));
         assertTrue(deque.popRight() == 1);
         assertTrue(deque.popRight() == 2);

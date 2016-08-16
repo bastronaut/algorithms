@@ -76,9 +76,8 @@ public class Exc_1_3_33_DequeResizingArray<Item> {
         if (isEmpty()) {
             throw new NullPointerException("deque is empty");
         }
-        // keep index in the same location if first and last have caught up
         if (firstItemIndex > lastItemIndex) {
-            throw new NullPointerException("deque is emptied");
+            throw new NullPointerException("deque is empty");
         }
         Item returnItem = deque[firstItemIndex];
         firstItemIndex++;
@@ -87,12 +86,17 @@ public class Exc_1_3_33_DequeResizingArray<Item> {
     }
 
     public Item popRight() {
+        if (isEmpty()) {
+            throw new NullPointerException("deque is empty");
+        }
+        if (lastItemIndex < firstItemIndex) {
+            throw new NullPointerException("deque is empty");
+        }
         Item returnItem = deque[lastItemIndex];
         lastItemIndex--;
         N--;
         return returnItem;
     }
-    // TODO end todo
 
     public boolean isEmpty() {
         return N == 0;

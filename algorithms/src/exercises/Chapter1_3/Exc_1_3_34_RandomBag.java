@@ -22,8 +22,8 @@ public class Exc_1_3_34_RandomBag<Item> implements Iterable {
 
     }
 
-    public boolean size() {
-
+    public int size() {
+        return 0;
     }
 
     public void add(Item item) {

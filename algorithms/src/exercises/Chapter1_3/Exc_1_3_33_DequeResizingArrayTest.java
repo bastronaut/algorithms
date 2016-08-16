@@ -16,6 +16,7 @@ public class Exc_1_3_33_DequeResizingArrayTest {
         deque.pushLeft(2);
         deque.pushLeft(1);
         deque.pushLeft(0);
+
         assertTrue(deque.toString().equals("0123"));
         deque.pushLeft(-1);
         assertTrue(deque.toString().equals("-10123"));

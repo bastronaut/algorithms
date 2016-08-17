@@ -42,8 +42,6 @@ public class Exc_1_3_33_DequeResizingArray<Item> {
         firstItemIndex = 1; //
     }
 
-
-
     public void pushLeft(Item item) {
         // boundary of array reached
         if (firstItemIndex <= 0) {
@@ -70,8 +68,6 @@ public class Exc_1_3_33_DequeResizingArray<Item> {
         N++;
     }
 
-    // TODO: think about checking if firstindex is bigger than second and what that means
-    // TODO: Maybe phase out int N, its duplicate information so not quite needed but its convenient
     public Item popLeft() {
         if (isEmpty()) {
             throw new NullPointerException("deque is empty");
@@ -80,6 +76,7 @@ public class Exc_1_3_33_DequeResizingArray<Item> {
             throw new NullPointerException("deque is empty");
         }
         Item returnItem = deque[firstItemIndex];
+        deque[firstItemIndex] = null;
         firstItemIndex++;
         N--;
         return returnItem;
@@ -93,6 +90,7 @@ public class Exc_1_3_33_DequeResizingArray<Item> {
             throw new NullPointerException("deque is empty");
         }
         Item returnItem = deque[lastItemIndex];
+        deque[lastItemIndex] = null;
         lastItemIndex--;
         N--;
         return returnItem;

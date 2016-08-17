@@ -1,6 +1,9 @@
 package exercises.Chapter1_3;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 
 /**
@@ -18,16 +21,24 @@ import java.util.function.Consumer;
  */
 public class Exc_1_3_34_RandomBag<Item> implements Iterable {
 
-    public Exc_1_3_34_RandomBag() {
+    private int N;
+    Item[] RandomBag;
 
+    public Exc_1_3_34_RandomBag() {
+        this.N = 0;
+        this.RandomBag = (Item[]) new Object[3]; // default arbitrary init size to make testing easier
     }
 
     public int size() {
-        return 0;
+        return N;
     }
 
     public void add(Item item) {
-
+        if (N >= RandomBag.length-1) {
+            resizeRandomBag(RandomBag.length * 2);
+        }
+        RandomBag[N] = item;
+        N++;
     }
 
     @Override
@@ -35,21 +46,42 @@ public class Exc_1_3_34_RandomBag<Item> implements Iterable {
         return new RandomBagIterator();
     }
 
-    @Override
-    public void forEach(Consumer action) {
-
+    // Double the randombag array in size when the array is full
+    private void resizeRandomBag(int size) {
+        if (size < 0) {
+            throw new RuntimeException("size must be posiive");
+        }
+        Item[] newRandomBag = (Item[]) new Object[size];
+        System.arraycopy(RandomBag, 0, newRandomBag, 0, RandomBag.length);
+        RandomBag = newRandomBag;
     }
 
     private class RandomBagIterator implements Iterator {
 
+        private int iN = N;
+
+        public RandomBagIterator() {
+            Random rnd = ThreadLocalRandom.current();
+            for (int i = 0; i < iN; i++) {
+                int index = rnd.nextInt(i+1);
+                Item tempitem = RandomBag[i];
+                RandomBag[i] = RandomBag[index];
+                RandomBag[index] = tempitem;
+            }
+        }
+
         @Override
         public boolean hasNext() {
-            return false;
+            return iN > 0;
         }
 
         @Override
         public Object next() {
-            return null;
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            return RandomBag[--iN];
         }
     }
 }

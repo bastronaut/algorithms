@@ -35,11 +35,30 @@ public class Exc_1_3_34_RandomBagTest {
             i++;
         }
 
-        for (int j = 0; j < extractedNumbers.length; j++) {
+        assertTrue(!extractedNumbers.equals(addedNumbers));
 
+        // Traverse trough all extractedNumbers, and verify
+        // that theyre present in addednumbers. If found, it is
+        // replaced with -1 to allow for verifying double occurrences
+        // of an int. If in the end all of extractedNumbers is
+        // set to -1, all of the items put in the RandomBag
+        // were successfully returned and test case passes
+        for (int j = 0; j < extractedNumbers.length; j++) {
+            for (int k = 0; k < addedNumbers.length; k++) {
+                if (extractedNumbers[j] == addedNumbers[k]) {
+                    extractedNumbers[j] = -1;
+                    break;
+                }
+            }
         }
 
-        assertTrue(!extractedNumbers.equals(addedNumbers));
+        boolean allfound = true;
+        for (i = 0; i < extractedNumbers.length; i++) {
+            if (extractedNumbers[i] != -1) {
+                allfound = false;
+            }
+        }
+        assertTrue(allfound);
     }
 
 }

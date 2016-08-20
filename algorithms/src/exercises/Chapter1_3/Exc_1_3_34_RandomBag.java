@@ -80,7 +80,6 @@ public class Exc_1_3_34_RandomBag<Item> implements Iterable {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-
             return RandomBag[--iN];
         }
     }

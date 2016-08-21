@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 /**
+ * ### builds on 1.3.35:
  * Random queue. A random queue stores a collection of items and supports the following API:
 
  public class    RandomQueue<Item>
@@ -18,8 +19,10 @@ import java.util.Random;
  * with the one at the last position (index N-1). Then delete and return the last object,
  * as in ResizingArrayStack. Write a client that deals bridge hands (13 cards each) using RandomQueue<Card>.
 
+ 1.3.36  Random iterator. Write an iterator for RandomQueue<Item> from the previous
+ exercise that returns the items in random order.
  */
-public class Exc_1_3_35_RandomQueue<Item> implements Iterable{
+public class Exc_1_3_36_RandomQueueIterator<Item> implements Iterable{
 
     private int N;
     private int frontQueue;
@@ -27,7 +30,7 @@ public class Exc_1_3_35_RandomQueue<Item> implements Iterable{
     @SuppressWarnings("unchecked")
     private Item[] RandomQueue = (Item[]) new Object[2];
 
-    public Exc_1_3_35_RandomQueue() {
+    public Exc_1_3_36_RandomQueueIterator() {
         N = 0;
         frontQueue = 0;
         backQueue = 0;
@@ -84,6 +87,31 @@ public class Exc_1_3_35_RandomQueue<Item> implements Iterable{
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new RandomQueueIterator();
+    }
+
+    private class RandomQueueIterator implements Iterator {
+
+        int iN = N;
+        int iFrontQueue = frontQueue;
+        int iBackQueue = backQueue;
+        Item[] iRandomQueue = RandomQueue;
+
+        @Override
+        public boolean hasNext() {
+            return iN > 0;
+        }
+
+        @Override
+        public Object next() {
+            Random rand = new Random();
+            int randy = rand.nextInt(iBackQueue - iFrontQueue) + iFrontQueue;
+            Item returnItem = iRandomQueue[randy];
+            iRandomQueue[randy] = iRandomQueue[iFrontQueue];
+            iRandomQueue[iFrontQueue] = null;
+            iFrontQueue++;
+            iN--;
+            return returnItem;
+        }
     }
 }

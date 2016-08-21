@@ -38,12 +38,12 @@ public class Exc_1_3_35_RandomQueue<Item> implements Iterable{
     }
 
     public void enqueue(Item item) {
-        backQueue++;
         if (backQueue >= RandomQueue.length) {
             resize(RandomQueue.length * 2);
         }
         RandomQueue[backQueue] = item;
         N++;
+        backQueue++;
     }
 
     public Item dequeueRandom() {
@@ -68,12 +68,18 @@ public class Exc_1_3_35_RandomQueue<Item> implements Iterable{
         }
         Random rand = new Random();
         int randy = rand.nextInt(backQueue - frontQueue) + frontQueue;
+        System.out.println("randy: " + randy);
         return RandomQueue[randy];
     }
 
+    public void printRQ() {
+        for (int i = 0; i < RandomQueue.length; i++) {
+            System.out.println(i + " " + RandomQueue[i]);
+        }
+    }
     private void resize(int size) {
         Item[] newRandomQueue = (Item[]) new Object[size];
-        System.arraycopy(RandomQueue, 0, newRandomQueue, 0, size);
+        System.arraycopy(RandomQueue, 0, newRandomQueue, 0, RandomQueue.length);
         RandomQueue = newRandomQueue;
     }
 

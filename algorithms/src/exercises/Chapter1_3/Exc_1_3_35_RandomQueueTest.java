@@ -11,7 +11,7 @@ public class Exc_1_3_35_RandomQueueTest {
 
     @Test
     public void sample() throws Exception {
-        Exc_1_3_35_RandomQueue<Integer> = new Exc_1_3_35_RandomQueue<>();
+        Exc_1_3_35_RandomQueue<Integer> RandomQueue = new Exc_1_3_35_RandomQueue<>();
 
     }
 

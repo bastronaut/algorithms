@@ -1,6 +1,7 @@
 package exercises.Chapter1_3;
 
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Random queue. A random queue stores a collection of items and supports the following API:
@@ -20,24 +21,60 @@ import java.util.Iterator;
  */
 public class Exc_1_3_35_RandomQueue<Item> implements Iterable{
 
-    public Exc_1_3_35_RandomQueue() {
+    private int N;
+    private int frontQueue;
+    private int backQueue;
+    @SuppressWarnings("unchecked")
+    private Item[] RandomQueue = (Item[]) new Object[2];
 
+    public Exc_1_3_35_RandomQueue() {
+        N = 0;
+        frontQueue = 0;
+        backQueue = 0;
     }
 
     public boolean isEmpty() {
-        return false;
+        return N == 0;
     }
 
     public void enqueue(Item item) {
-
+        backQueue++;
+        if (backQueue >= RandomQueue.length) {
+            resize(RandomQueue.length * 2);
+        }
+        RandomQueue[backQueue] = item;
+        N++;
     }
 
-    public Item dequeue() {
-        return null;
+    public Item dequeueRandom() {
+        if (isEmpty()) {
+            throw new NullPointerException("randomq empty");
+        }
+        // get a randomindex between frontqueue and backqueue and swap
+        // the item at index with the frontqueue item
+        Random rand = new Random();
+        int randy = rand.nextInt(backQueue - frontQueue) + frontQueue;
+        Item returnItem = RandomQueue[randy];
+        RandomQueue[randy] = RandomQueue[frontQueue];
+        RandomQueue[frontQueue] = null;
+        frontQueue++;
+        N--;
+        return returnItem;
     }
 
     public Item sample() {
-        return null;
+        if (isEmpty()) {
+            throw new NullPointerException();
+        }
+        Random rand = new Random();
+        int randy = rand.nextInt(backQueue - frontQueue) + frontQueue;
+        return RandomQueue[randy];
+    }
+
+    private void resize(int size) {
+        Item[] newRandomQueue = (Item[]) new Object[size];
+        System.arraycopy(RandomQueue, 0, newRandomQueue, 0, size);
+        RandomQueue = newRandomQueue;
     }
 
     @Override

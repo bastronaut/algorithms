@@ -2,8 +2,8 @@ package exercises.Chapter1_3;
 
 /**
  * 1.3.38  Delete kth element. Implement a class that supports the following API:
- public class    GeneralizedQueue<Item>
- GeneralizedQueue() create an empty queue
+ public class    generalizedQueue<Item>
+ generalizedQueue() create an empty queue
  boolean isEmpty() is the queue empty?
  void insert(Item x) add an item
  Item delete(int k) delete and return the kth least recently inserted item

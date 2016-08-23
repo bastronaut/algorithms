@@ -2,8 +2,8 @@ package exercises.Chapter1_3;
 
 /**
  * 1.3.38  Delete kth element. Implement a class that supports the following API:
- public class    GeneralizedQueue<Item>
- GeneralizedQueue() create an empty queue
+ public class    generalizedQueue<Item>
+ generalizedQueue() create an empty queue
  boolean isEmpty() is the queue empty?
  void insert(Item x) add an item Item delete(int k) delete and return the kth least recently inserted item
  First, develop an implementation that uses an array implementation, and then develop one
@@ -16,18 +16,37 @@ package exercises.Chapter1_3;
  */
 public class Exc_1_3_38_GeneralizedQDeleteKArray<Item> implements Exc_1_3_38_GeneralizedQDeleteInterface<Item> {
 
+    Item[] generalizedQueue = (Item[]) new Object[];
+    private int backqueue;
+    private int N;
+
     @Override
     public boolean isEmpty() {
-        return false;
+        return N == 0;
     }
 
     @Override
-    public void insert(Item x) {
+    public void insert(Item item) {
+        if (backqueue == generalizedQueue.length) {
+            resize(generalizedQueue.length * 2);
+        }
+        generalizedQueue[backqueue] = item;
+        backqueue++;
+        N++;
 
     }
 
     @Override
     public Item delete(int k) {
-        return null;
+        Item deleteItem = generalizedQueue[k];
+        for (int i = 0; i < backqueue; i++) {
+            
+        }
+        backqueue--;
+        N--;
+        return deleteItem;
     }
+
+    private void resize(int size) {}
+
 }

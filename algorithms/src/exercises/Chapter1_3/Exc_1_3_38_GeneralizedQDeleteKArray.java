@@ -14,7 +14,7 @@ package exercises.Chapter1_3;
 
 
  */
-public class Exc_1_3_38_GeneralizedQDeleteKArray implements Exc_1_3_38_GeneralizedQDeleteInterface{
+public class Exc_1_3_38_GeneralizedQDeleteKArray<Item> implements Exc_1_3_38_GeneralizedQDeleteInterface<Item> {
 
     @Override
     public boolean isEmpty() {
@@ -22,12 +22,12 @@ public class Exc_1_3_38_GeneralizedQDeleteKArray implements Exc_1_3_38_Generaliz
     }
 
     @Override
-    public void insert(Object x) {
+    public void insert(Item x) {
 
     }
 
     @Override
-    public Object delete(int k) {
+    public Item delete(int k) {
         return null;
     }
 }

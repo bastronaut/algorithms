@@ -5,7 +5,9 @@ package exercises.Chapter1_3;
  public class    GeneralizedQueue<Item>
  GeneralizedQueue() create an empty queue
  boolean isEmpty() is the queue empty?
- void insert(Item x) add an item Item delete(int k) delete and return the kth least recently inserted item
+ void insert(Item x) add an item
+ Item delete(int k) delete and return the kth least recently inserted item
+ S
  First, develop an implementation that uses an array implementation, and then develop one
  that uses a linked-list implementation.
  Note : the algorithms and data structures that we introduce in Chapter 3 make it possible
@@ -17,6 +19,4 @@ interface Exc_1_3_38_GeneralizedQDeleteInterface <Item> {
     boolean isEmpty();
     void insert(Item x);
     Item delete(int k);
-
-
 }

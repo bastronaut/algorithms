@@ -26,8 +26,18 @@ public class Exc_1_3_38_GeneralizedQDeleteKLinkedListTest {
         GQ.insert(3);
         GQ.insert(4);
 
+        GQ.delete(3);
+        assertTrue(GQ.toString().equals("123"));
+        GQ.insert(4);
+        GQ.insert(5);
+        GQ.insert(6);
+        assertTrue(GQ.toString().equals("123456"));
         GQ.delete(0);
-        GQ.toString();
+        assertTrue(GQ.toString().equals("23456"));
+        GQ.delete(2);
+        assertTrue(GQ.toString().equals("2356"));
+        GQ.delete(3);
+        assertTrue(GQ.toString().equals("235"));
     }
 
 }

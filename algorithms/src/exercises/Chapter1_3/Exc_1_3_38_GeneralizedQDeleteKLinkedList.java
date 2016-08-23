@@ -58,8 +58,17 @@ public class Exc_1_3_38_GeneralizedQDeleteKLinkedList<Item> implements Exc_1_3_3
             tempNextNode = tempNextNode.next;
         }
         Item returnItem = tempNextNode.item;
-        tempPrevNode.next = tempNextNode.next;
-        tempNextNode = null;
+        // exception case for removing the front node
+        if (k == 0 ) {
+            frontNode = frontNode.next;
+        } else if (k == N-1) {
+            // exception case for changing the back node
+            tempPrevNode.next = null;
+            backNode = tempPrevNode;
+        } else {
+            tempPrevNode.next = tempNextNode.next;
+            tempNextNode = null;
+        }
         N--;
         return returnItem;
     }

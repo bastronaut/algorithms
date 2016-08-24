@@ -16,7 +16,7 @@ package exercises.Chapter1_3;
  */
 public class Exc_1_3_38_GeneralizedQDeleteKArray<Item> implements Exc_1_3_38_GeneralizedQDeleteInterface<Item> {
 
-    Item[] generalizedQueue = (Item[]) new Object[];
+    Item[] generalizedQueue = (Item[]) new Object[2];
     private int backqueue;
     private int N;
 
@@ -38,15 +38,44 @@ public class Exc_1_3_38_GeneralizedQDeleteKArray<Item> implements Exc_1_3_38_Gen
 
     @Override
     public Item delete(int k) {
+        if (k > backqueue) {
+            throw new NullPointerException("kth element is bigger than the last item in the queue");
+        }
+
         Item deleteItem = generalizedQueue[k];
-        for (int i = 0; i < backqueue; i++) {
-            
+
+        if (k == generalizedQueue.length-1) {
+            // exception case for final it
+            generalizedQueue[k] = null;
+        } else {
+            for (int i = k; i < backqueue; i++) {
+                generalizedQueue[i] = generalizedQueue[i+1];
+            }
         }
         backqueue--;
         N--;
         return deleteItem;
     }
 
-    private void resize(int size) {}
+    // works only enlargement for now
+    private void resize(int size) {
+        if (size < 0) {
+            throw new RuntimeException("Size invalid");
+        }
+        Item[] newGeneralizedQueue = (Item[]) new Object[size];
+        for (int i = 0; i < generalizedQueue.length; i++) {
+            newGeneralizedQueue[i] = generalizedQueue[i];
+        }
+        generalizedQueue = newGeneralizedQueue;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < backqueue; i++) {
+            sb.append(generalizedQueue[i]);
+        }
+        return sb.toString();
+    }
+
 
 }

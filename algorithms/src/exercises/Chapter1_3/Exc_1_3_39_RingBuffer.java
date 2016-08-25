@@ -11,7 +11,7 @@ package exercises.Chapter1_3;
  Translated: a ring buffer is a fixed size collection, where
  the end is linked to the beginning. Whenever an item is written
  when the 'end' is reached, it simply restarts and writes at the beginning.
- However, if this value has not yet been read, it will throw an expcetion
+ However, if this value has not yet been read, it will throw an exception   
 
  API:
 
@@ -22,18 +22,54 @@ package exercises.Chapter1_3;
  wil thwor an exception whenver the new case is done
  */
 public class Exc_1_3_39_RingBuffer<Item> {
-    private final int RINGBUFFERSIZE = 4;
-    Item[] ringBuffer = (Item[]) new Object[RINGBUFFERSIZE];
+
+    private final int RBSIZE = 4;
+    private int front = 0;
+    private int rear = 0;
+    private int N;
+
+    Item[] ringBuffer = (Item[]) new Object[RBSIZE];
+
 
     Exc_1_3_39_RingBuffer(Item[] inititems) {
-        for (int i = 0; i < RINGBUFFERSIZE; i++) {
+        for (int i = 0; i < RBSIZE; i++) {
             try {
                 ringBuffer[i] = inititems[i];
             } catch (Exception e) {
-                // in case less inititems are given than RINGBUFFERSIZE
+                // in case less inititems are given than RBSIZE
                 break;
             }
         }
     }
+
+    public void deposit(Item item) {
+        rear++;
+    }
+
+    public Item read() {
+        return ringBuffer[0];
+    }
+
+    public int size() {
+        return N;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = rear; i < RBSIZE; i++) {
+            sb.append(ringBuffer[i]);
+        }
+        for (int i = 0; i < read; i++) {
+            sb.append(ringBuffer[i]);
+        }
+
+        // volgens mij alternatief met single loop:
+        // for (int i = rear; i < rear + RBSIZE; i++) {
+        // ringBuffer[i % RBSIZE] kan je pushen
+        //    }
+
+    }
+
+
 
 }

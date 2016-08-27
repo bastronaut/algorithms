@@ -11,6 +11,7 @@ public class Exc_1_3_39_RingBufferTest {
     @Test
     public void deposit() throws Exception {
         Exc_1_3_39_RingBuffer RB = new Exc_1_3_39_RingBuffer(new Integer[]{1, 3, 5, 10});
+        System.out.println(RB.toString());
         try {
             RB.deposit(999);
         } catch (Exception e) {
@@ -22,12 +23,12 @@ public class Exc_1_3_39_RingBufferTest {
         assertTrue((int) RB.read() == 3);
         RB.deposit(60);
         assertTrue((int) RB.read() == 5);
+        assertTrue((int) RB.read() == 10);
         assertTrue((int) RB.read() == 50);
-        assertTrue((int) RB.read() == 60);
         RB.deposit(100);
         RB.deposit(200);
+        assertTrue((int) RB.read() == 60);
         assertTrue((int) RB.read() == 100);
-        assertTrue((int) RB.read() == 200);
         try {
             boolean caught = false;
             RB.deposit(999);

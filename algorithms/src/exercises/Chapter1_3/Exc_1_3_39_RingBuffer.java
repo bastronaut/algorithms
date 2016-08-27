@@ -18,8 +18,7 @@ package exercises.Chapter1_3;
  void deposit
  item read
 
-
- wil thwor an exception whenver the new case is done
+ Throw an exception whenever rules of ringbuffer is full or empty
  */
 public class Exc_1_3_39_RingBuffer<Item> {
 
@@ -35,6 +34,7 @@ public class Exc_1_3_39_RingBuffer<Item> {
         for (int i = 0; i < RBSIZE; i++) {
             try {
                 ringBuffer[i] = inititems[i];
+                front++;
             } catch (Exception e) {
                 // in case less inititems are given than RBSIZE
                 break;
@@ -43,11 +43,21 @@ public class Exc_1_3_39_RingBuffer<Item> {
     }
 
     public void deposit(Item item) {
-        rear++;
+        if (front-rear > RBSIZE-1) {
+            throw new RuntimeException("The buffer is full");
+        }
+        ringBuffer[front%RBSIZE] = item;
+        front++;
     }
 
     public Item read() {
-        return ringBuffer[0];
+        if (rear == front) {
+            throw new RuntimeException("The buffer is empty");
+        }
+        Item returnItem = ringBuffer[rear%RBSIZE];
+        ringBuffer[rear%RBSIZE] = null;
+        rear++;
+        return returnItem;
     }
 
     public int size() {
@@ -55,19 +65,12 @@ public class Exc_1_3_39_RingBuffer<Item> {
     }
 
     public String toString() {
+        System.out.println("ok to string");
         StringBuilder sb = new StringBuilder();
-        for (int i = rear; i < RBSIZE; i++) {
-            sb.append(ringBuffer[i]);
+        for (int i = 0; i < RBSIZE; i++) {
+            sb.append(ringBuffer[(rear + i) % RBSIZE]);
         }
-        for (int i = 0; i < read; i++) {
-            sb.append(ringBuffer[i]);
-        }
-
-        // volgens mij alternatief met single loop:
-        // for (int i = rear; i < rear + RBSIZE; i++) {
-        // ringBuffer[i % RBSIZE] kan je pushen
-        //    }
-
+        return sb.toString();
     }
 
 

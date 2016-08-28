@@ -20,6 +20,5 @@ public class Exc_1_3_40_MoveToFrontTest {
     @Test
     public void testInsert() {
         Exc_1_3_40_MoveToFront MTF = new Exc_1_3_40_MoveToFront();
-
     }
 }

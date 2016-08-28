@@ -14,12 +14,41 @@ package exercises.Chapter1_3;
  */
 public class Exc_1_3_40_MoveToFront <Item> {
 
-    private void Insert(Item item) {
+    private Node frontNode;
 
+    private void Insert(Item item) {
+        Node tempNode = frontNode;
+        Node newNode = new Node();
+        newNode.item = item;
+
+        while (tempNode != null) {
+            // delete from list.
+            if (tempNode.item == item) {
+                // first check exception case if its the last node in the list
+                if (tempNode.next == null) {
+                    tempNode = null;
+                } else {
+                    tempNode.item = tempNode.next.item;
+                    tempNode.next = tempNode.next.next;
+                }
+            }
+            tempNode = tempNode.next;
+        }
+        newNode.next = frontNode;
+        frontNode = newNode;
     }
 
-    public String toString() {
 
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node tempNode = frontNode;
+
+        while (tempNode != null) {
+            sb.append(tempNode.item);
+            tempNode = tempNode.next;
+        }
+        return sb.toString();
     }
 
     private class Node {

@@ -16,29 +16,39 @@ public class Exc_1_3_40_MoveToFront <Item> {
 
     private Node frontNode;
 
-    private void Insert(Item item) {
-        Node tempNode = frontNode;
+    public void insert(Item item) {
         Node newNode = new Node();
         newNode.item = item;
 
-        while (tempNode != null) {
-            // delete from list.
-            if (tempNode.item == item) {
-                // first check exception case if its the last node in the list
-                if (tempNode.next == null) {
-                    tempNode = null;
-                } else {
-                    tempNode.item = tempNode.next.item;
-                    tempNode.next = tempNode.next.next;
-                }
-            }
-            tempNode = tempNode.next;
-        }
+        removeIfExists(item);
+
         newNode.next = frontNode;
         frontNode = newNode;
     }
 
 
+    public void removeIfExists(Item item) {
+        if (frontNode == null) {
+            return;
+        } else {
+            Node tempNode = frontNode;
+
+            while (tempNode != null) {
+                if (tempNode.item == item) {
+                    // check for exception case if its last node in list
+                    if (tempNode.next == null) {
+                        tempNode.item = null;
+                        tempNode = null;
+                        break;
+                    } else {
+                        tempNode.item = tempNode.next.item;
+                        tempNode.next = tempNode.next.next;
+                    }
+                }
+                tempNode = tempNode.next;
+            }
+        }
+    }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -54,6 +64,10 @@ public class Exc_1_3_40_MoveToFront <Item> {
     private class Node {
         public Node next;
         public Item item;
+
+        public String toString() {
+            return item.toString();
+        }
     }
 
 }

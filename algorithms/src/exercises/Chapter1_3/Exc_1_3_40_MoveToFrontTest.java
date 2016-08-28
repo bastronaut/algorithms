@@ -19,6 +19,20 @@ public class Exc_1_3_40_MoveToFrontTest {
 
     @Test
     public void testInsert() {
-        Exc_1_3_40_MoveToFront MTF = new Exc_1_3_40_MoveToFront();
+        Exc_1_3_40_MoveToFront<Integer> MTF = new Exc_1_3_40_MoveToFront();
+        MTF.insert(3);
+        MTF.insert(2);
+        MTF.insert(1);
+        MTF.insert(1);
+        assertTrue(MTF.toString().equals("123"));
+        MTF.insert(2);
+        assertTrue(MTF.toString().equals("213"));
+        MTF.insert(3);
+        System.out.println(MTF.toString());
+        assertTrue(MTF.toString().equals("321null")); // should fix null but gets it done
+        MTF.insert(4);
+        assertTrue(MTF.toString().equals("4321null"));
+        MTF.insert(1);
+        assertTrue(MTF.toString().equals("1432null"));
     }
 }

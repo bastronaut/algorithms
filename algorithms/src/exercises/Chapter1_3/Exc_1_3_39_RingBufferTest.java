@@ -61,6 +61,20 @@ public class Exc_1_3_39_RingBufferTest {
             boolean caught = true;
             assertTrue(caught);
         }
+        try {
+            RB.read();
+        } catch (Exception e) {
+            boolean caught = true;
+            assertTrue(caught);
+        }
+        RB.deposit(23);
+        assertTrue((int) RB.read() == 23);
+        try {
+            RB.read();
+        } catch (Exception e) {
+            boolean caught = true;
+            assertTrue(caught);
+        }
     }
 
 }

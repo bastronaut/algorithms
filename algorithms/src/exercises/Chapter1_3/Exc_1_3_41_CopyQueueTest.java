@@ -22,6 +22,7 @@ public class Exc_1_3_41_CopyQueueTest {
         CQ.push(4);
         CQ.push(5);
         Exc_1_3_41_CopyQueue<Integer> CQ2 = new Exc_1_3_41_CopyQueue(CQ);
+        assertTrue(CQ.toString().equals("12345"));
         assertTrue(CQ2.toString().equals("12345"));
         assertTrue(CQ2.pop() == 1);
         assertTrue(CQ2.toString().equals("2345"));

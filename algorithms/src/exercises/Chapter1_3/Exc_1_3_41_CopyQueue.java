@@ -12,6 +12,10 @@ import java.util.Iterator;
  */
 public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
 
+    private int N;
+    private Node frontNode;
+    private Node backNode;
+
     public Exc_1_3_41_CopyQueue() {
 
     }
@@ -21,17 +25,54 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
     }
 
     public void push(Item item) {
-
+        Node newNode = new Node();
+        newNode.item = item;
+        if (isEmpty()) {
+            frontNode = newNode;
+            backNode = newNode;
+        } else {
+            backNode.next = newNode;
+            backNode = newNode;
+        }
+        N++;
     }
 
     public Item pop() {
+        if (isEmpty()) {
+            throw new NullPointerException("Queue is empty");
+        }
+        Item returnItem = frontNode.item;
+        frontNode = frontNode.next;
+        N--;
+        return returnItem;
+    }
 
+    public int Size() {
+        return N;
+    }
+    public boolean isEmpty() {
+        return N == 0;
     }
 
     public String toString() {
-
+        StringBuilder sb = new StringBuilder();
+        Node tempNode = frontNode;
+        System.out.println("tempnode:" + tempNode);
+        while (tempNode.next != null) {
+            sb.append(tempNode.item);
+            tempNode = tempNode.next;
+        }
+        return sb.toString();
     }
 
+    private class Node {
+        Node next;
+        Item item;
+
+        public String toString() {
+            return item.toString();
+        }
+    }
 
     @Override
     public Iterator iterator() {
@@ -40,14 +81,20 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
 
     private class CopyQueueIterator implements Iterator {
 
+        Node iNode = frontNode;
+        int iN = N;
+
         @Override
         public boolean hasNext() {
-            return false;
+            return iN > 0;
         }
 
         @Override
-        public Object next() {
-            return null;
+        public Item next() {
+            Item returnItem = iNode.item;
+            iNode = iNode.next;
+            N--;
+            return returnItem;
         }
     }
 }

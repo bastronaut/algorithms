@@ -17,11 +17,20 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
     private Node backNode;
 
     public Exc_1_3_41_CopyQueue() {
-
+        // default constructor
     }
 
     public Exc_1_3_41_CopyQueue(Exc_1_3_41_CopyQueue queueToCopy) {
-        // return new queue
+        // To create a copy, completely pop the original queue,
+        // and add all of the popped items back to it
+        for (int i = 0; i < queueToCopy.size(); i++) {
+            System.out.println(queueToCopy);
+            System.out.println(frontNode);
+            Node newCopyNode = new Node();
+            Object newItem = queueToCopy.pop();
+            this.push((Item) newItem);
+            queueToCopy.push(newItem);
+        }
     }
 
     public void push(Item item) {
@@ -47,7 +56,7 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
         return returnItem;
     }
 
-    public int Size() {
+    public int size() {
         return N;
     }
     public boolean isEmpty() {
@@ -57,8 +66,7 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Node tempNode = frontNode;
-        System.out.println("tempnode:" + tempNode);
-        while (tempNode.next != null) {
+        while (tempNode != null) {
             sb.append(tempNode.item);
             tempNode = tempNode.next;
         }

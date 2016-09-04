@@ -16,9 +16,26 @@ public class Exc_1_3_42_CopyStack <Item> {
     }
 
     public Exc_1_3_42_CopyStack(Exc_1_3_42_CopyStack stackToCopy) {
-        // easiest way to copy a stack: use two stacks
-        while (!stackToCopy.isEmpty()) {
 
+        // easiest way to copy a stack: use two stacks
+        Exc_1_3_42_CopyStack<Item> tempCopy = new Exc_1_3_42_CopyStack();
+
+        // lazy casting for exercise purposes
+        while (!stackToCopy.isEmpty()) {
+            tempCopy.push((Item) stackToCopy.pop());
+        }
+        while (!tempCopy.isEmpty()) {
+            Item tempItem = tempCopy.pop();
+            Node newNode = new Node();
+            newNode.item = tempItem ;
+            if (!isEmpty()) {
+                newNode.next = topstackNode;
+            }
+            topstackNode = newNode;
+            N++;
+
+            // reset original stack
+            stackToCopy.push(tempItem);
         }
 
     }

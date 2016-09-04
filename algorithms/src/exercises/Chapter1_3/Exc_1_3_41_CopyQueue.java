@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  1.3.41  Copy a queue. Create a new constructor so that
  Queue<Item> r = new Queue<Item>(q); makes r a reference to a new and
- independent copy of the queue q. You should be able to push and pop
+ independent copy of the queue q. You should be able to enqueue and dequeue
  from either q or r without inﬂuencing the other. Hint : Delete all
  of the elements from q and add these elements to both q and r.
 
@@ -21,19 +21,17 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
     }
 
     public Exc_1_3_41_CopyQueue(Exc_1_3_41_CopyQueue queueToCopy) {
-        // To create a copy, completely pop the original queue,
+        // To create a copy, completely dequeue the original queue,
         // and add all of the popped items back to it
         for (int i = 0; i < queueToCopy.size(); i++) {
-            System.out.println(queueToCopy);
-            System.out.println(frontNode);
             Node newCopyNode = new Node();
-            Object newItem = queueToCopy.pop();
-            this.push((Item) newItem);
-            queueToCopy.push(newItem);
+            Object newItem = queueToCopy.dequeue();
+            this.enqueue((Item) newItem);
+            queueToCopy.enqueue(newItem);
         }
     }
 
-    public void push(Item item) {
+    public void enqueue(Item item) {
         Node newNode = new Node();
         newNode.item = item;
         if (isEmpty()) {
@@ -46,7 +44,7 @@ public class Exc_1_3_41_CopyQueue <Item> implements Iterable {
         N++;
     }
 
-    public Item pop() {
+    public Item dequeue() {
         if (isEmpty()) {
             throw new NullPointerException("Queue is empty");
         }

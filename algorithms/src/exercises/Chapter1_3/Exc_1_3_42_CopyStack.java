@@ -68,6 +68,16 @@ public class Exc_1_3_42_CopyStack <Item> {
         return N == 0;
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node tempTopStackNode = topstackNode;
+        while (tempTopStackNode != null) {
+            sb.append(tempTopStackNode.item);
+            tempTopStackNode = tempTopStackNode.next;
+        }
+        return sb.toString();
+    }
+
     private class Node {
         Item item;
         Node next;

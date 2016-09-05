@@ -12,8 +12,18 @@ package exercises.Chapter1_3;
  void right(int k) move the cursor k positions to the right
  int size() number of characters in the buffer
  API for a text buffer
+
+ The assignment wants to use two stacks for this. Probably also
+ a good (better?) idea to implement this with a single doubly Linked List, as
+ the main operations (insert and delete) can run in constant time..
+ However, accessing (left(k) / right(k) ) with a LL will be slower
+
+ Instead, will do this with Array because excercise seems to want it to?
  */
 public class Exc_1_3_44_TextEditorBuffer {
+
+    private char[] buffer = new char[3];
+    private int cursor;
 
     public void insert(char c) {
 
@@ -33,6 +43,18 @@ public class Exc_1_3_44_TextEditorBuffer {
 
     public int size() {
 
+    }
+
+    private void enlargeBuffer(int n) {
+
+    }
+
+    public char getCharAtCursor() {
+
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
     }
 
 }

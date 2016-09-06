@@ -26,6 +26,11 @@ public class Exc_1_3_44_TextEditorBuffer {
     private int cursor;
 
     public void insert(char c) {
+        if (cursor == buffer.length-1) {
+            enlargeBuffer(buffer.length * 2);
+        }
+        // does the insert operation remove the character at the location, or insert + push all elements
+        // in front to another place? probably removes it... in which case its not per se faster with a linked list
 
     }
 
@@ -33,10 +38,12 @@ public class Exc_1_3_44_TextEditorBuffer {
 
     }
 
+    // if k is larger than the remaining items to the left of it, stick to the first element
     public void left(int k) {
 
     }
 
+    // if k is larger than the remaining items to the right of it, .. what to do
     public void right(int k) {
 
     }

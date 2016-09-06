@@ -49,7 +49,26 @@ public class Exc_1_3_44_TextEditorBufferTest {
 
     @Test
     public void left() throws Exception {
-
+        Exc_1_3_44_TextEditorBuffer buffer = new Exc_1_3_44_TextEditorBuffer();
+        buffer.insert('a');
+        buffer.insert('b');
+        buffer.insert('c');
+        buffer.insert('d');
+        buffer.insert('e');
+        buffer.insert('f');
+        buffer.insert('g');
+        buffer.left(2);
+        assertTrue(buffer.getCharAtCursor() == 'f');
+        buffer.left(1);
+        buffer.insert('X');
+        buffer.insert('Y');
+        assertTrue(buffer.getCharAtCursor() == 'e');
+        buffer.left(1);
+        assertTrue(buffer.getCharAtCursor() == 'Y');
+        buffer.left(2);
+        assertTrue(buffer.getCharAtCursor() == 'd');
+        buffer.left(5);
+        assertTrue(buffer.getCharAtCursor() == 'a');
     }
 
     @Test

@@ -53,11 +53,14 @@ public class Exc_1_3_44_TextEditorBuffer {
     }
 
     private void enlargeBuffer(int n) {
-
+        char[] newBuffer = new char[n];
+        for (int i = 0; i < buffer.length; i++) {
+            newBuffer[i] = buffer[i];
+        }
     }
 
     public char getCharAtCursor() {
-
+        return buffer[cursor];
     }
 
     public String toString() {

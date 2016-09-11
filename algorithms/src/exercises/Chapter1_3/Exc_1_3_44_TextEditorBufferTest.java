@@ -11,16 +11,16 @@ public class Exc_1_3_44_TextEditorBufferTest {
     @Test
     public void insert() throws Exception {
         Exc_1_3_44_TextEditorBuffer buffer = new Exc_1_3_44_TextEditorBuffer();
-        // abcdefg
+        // gfedcba
         buffer.insert('a');
         buffer.insert('b');
         buffer.insert('c');
-        assertTrue(buffer.toString().equals("abc"));
+        assertTrue(buffer.toString().equals("cba"));
         buffer.insert('d');
         buffer.insert('e');
         buffer.insert('f');
         buffer.insert('g');
-        assertTrue(buffer.toString().equals("abcdefg"));
+        assertTrue(buffer.toString().equals("gfedcba"));
     }
 
     @Test

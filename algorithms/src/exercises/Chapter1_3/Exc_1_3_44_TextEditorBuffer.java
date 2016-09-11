@@ -29,8 +29,8 @@ import java.util.EmptyStackException;
  */
 public class Exc_1_3_44_TextEditorBuffer {
 
-    private CustomStackArray<Character> firstBuffer = new CustomStackArray<char>();
-    private CustomStackArray<Character> secondBuffer = new CustomStackArray<char>();
+    private CustomStackArray<Character> firstBuffer = new CustomStackArray<>(3); // arbitrary initial size
+    private CustomStackArray<Character> secondBuffer = new CustomStackArray<>(3);
 
 
     public void insert(char c) {
@@ -57,13 +57,22 @@ public class Exc_1_3_44_TextEditorBuffer {
         return firstBuffer.size() + secondBuffer.size();
     }
 
-
     public char getCharAtCursor() {
-        
+        char returnChar = firstBuffer.pop();
+        firstBuffer.push(returnChar);
+        return returnChar;
     }
 
+    // the stack is printed in LIFO order
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        for (char c : firstBuffer) {
+            sb.append(c);
+        }
+        for (char d : secondBuffer) {
+            sb.append(d);
+        }
+        return sb.toString();
     }
 
 }

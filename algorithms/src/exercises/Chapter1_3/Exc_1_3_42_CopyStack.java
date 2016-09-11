@@ -82,6 +82,9 @@ public class Exc_1_3_42_CopyStack <Item> {
         Item item;
         Node next;
 
+        public Node() {
+
+        }
 
         // ALTERNATIVE BETTER AWNSER is to recursively create new nodes
         // create a copy constructor for a single Node object.

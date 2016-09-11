@@ -1,5 +1,9 @@
 package exercises.Chapter1_3;
 
+import algorithms.CustomStackArray;
+
+import java.util.EmptyStackException;
+
 /**
  1.3.44 Text editor buffer. Develop a data type for a buffer in a text
  editor that implements the following API:
@@ -13,54 +17,49 @@ package exercises.Chapter1_3;
  int size() number of characters in the buffer
  API for a text buffer
 
- The assignment wants to use two stacks for this. Probably also
- a good (better?) idea to implement this with a single doubly Linked List, as
- the main operations (insert and delete) can run in constant time..
- However, accessing (left(k) / right(k) ) with a LL will be slower
+ Two stacks will be good for this: when you move the cursor left, pop it from the first stack
+ and push it onto the second. When you move right, you pop it from the second stack, and push
+ it back onto the first!
 
- Instead, will do this with Array because excercise seems to want it to?
+ When you want to insert, we simply push on top of the first stack. To get the char at cursor,
+ we pop from the stack, get the item, push it back onto the stack, and return the item.
+
+
+
  */
 public class Exc_1_3_44_TextEditorBuffer {
 
-    private char[] buffer = new char[3];
-    private int cursor;
+    private CustomStackArray<Character> firstBuffer = new CustomStackArray<char>();
+    private CustomStackArray<Character> secondBuffer = new CustomStackArray<char>();
+
 
     public void insert(char c) {
-        if (cursor == buffer.length-1) {
-            enlargeBuffer(buffer.length * 2);
-        }
-        // does the insert operation remove the character at the location, or insert + push all elements
-        // in front to another place? probably removes it... in which case its not per se faster with a linked list
-
+        firstBuffer.push(c);
     }
 
-    public char delete() {
-
+    // think about the deletion when the stack is empty..
+    // exception will be thrown, TODO: handle exception
+    public char delete()  {
+        return firstBuffer.pop();
     }
 
-    // if k is larger than the remaining items to the left of it, stick to the first element
+
     public void left(int k) {
-
+        secondBuffer.push(firstBuffer.pop());
     }
 
     // if k is larger than the remaining items to the right of it, .. what to do
     public void right(int k) {
-
+        firstBuffer.push(secondBuffer.pop());
     }
 
     public int size() {
-
+        return firstBuffer.size() + secondBuffer.size();
     }
 
-    private void enlargeBuffer(int n) {
-        char[] newBuffer = new char[n];
-        for (int i = 0; i < buffer.length; i++) {
-            newBuffer[i] = buffer[i];
-        }
-    }
 
     public char getCharAtCursor() {
-        return buffer[cursor];
+        
     }
 
     public String toString() {

@@ -35,15 +35,24 @@ public class Exc_1_3_44_TextEditorBuffer {
         firstStack.push(c);
     }
 
-    // the deletion will work as a backspace?
+    // will function as a 'delete' in a text editor (so not a backspace)
+    // ab|c , where | is the cursor, c will be deleted
     public char delete()  {
-        return firstStack.pop();
+        if (secondStack.size() == 0) {
+            throw new RuntimeException("cursor is at end of buffer");
+        } else {
+            return secondStack.pop();
+        }
     }
 
 
     public void left(int k) {
         for (int i = 0; i < k; i++) {
-            secondStack.push(firstStack.pop());
+            if (firstStack.size() == 0) {
+                throw new RuntimeException("Cursor is at end of buffer");
+            } else {
+                secondStack.push(firstStack.pop());
+            }
         }
     }
 
@@ -57,9 +66,13 @@ public class Exc_1_3_44_TextEditorBuffer {
     }
 
     public char getCharAtCursor() {
-        char returnChar = firstStack.pop();
-        firstStack.push(returnChar);
-        return returnChar;
+        if (secondStack.size() == 0) {
+            throw new RuntimeException("cursor is at end of buffer");
+        } else {
+            char returnChar = secondStack.pop();
+            secondStack.push(returnChar);
+            return returnChar;
+        }
     }
 
     // although we're using a stack, the buffer should print

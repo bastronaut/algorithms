@@ -35,19 +35,21 @@ public class Exc_1_3_44_TextEditorBufferTest {
         buffer.insert('g');
         // start with abcdefg
         buffer.left(2);
-        System.out.println(buffer.delete()); // removes 'f'. cursor now at e, before g
+        System.out.println(buffer.delete()); // removes 'f'. abcde|g
+
         assertTrue(buffer.toString().equals("abcdeg"));
         buffer.left(4);
         System.out.println(buffer.getCharAtCursor());
-        buffer.delete();  // removes 'b', cursor now a, before c
-        System.out.println(buffer.getCharAtCursor());
-        assertTrue(buffer.toString().equals("abcdeg"));
+        buffer.delete();  // removes 'b', a|cdeg
+        assertTrue(buffer.getCharAtCursor() == 'c');
+        assertTrue(buffer.toString().equals("acdeg")); // removes c cursor at a|deg
         buffer.delete();
-        assertTrue(buffer.toString().equals("gedc"));
+        assertTrue(buffer.toString().equals("adeg")); // a|deg
         buffer.delete();
-        assertTrue(buffer.toString().equals("ged"));
+        assertTrue(buffer.toString().equals("aeg")); // a|eg
         buffer.right(1);
-        assertTrue(buffer.toString().equals("ged"));
+        buffer.delete();
+        assertTrue(buffer.toString().equals("ae"));
     }
 
     @Test
@@ -61,21 +63,38 @@ public class Exc_1_3_44_TextEditorBufferTest {
         buffer.insert('f');
         buffer.insert('g');
         buffer.left(2);
-        assertTrue(buffer.getCharAtCursor() == 'f');
-        buffer.left(1);
-        buffer.insert('X');
-        buffer.insert('Y');
+        assertTrue(buffer.getCharAtCursor() == 'f'); //abcde|fg
+        buffer.left(1); // abcd|efg
+        buffer.insert('X'); // abcdXY|efg
+        buffer.insert('Y'); // abcdXY|efg
         assertTrue(buffer.getCharAtCursor() == 'e');
-        buffer.left(1);
+        buffer.left(1); // abcdX|Yefg
         assertTrue(buffer.getCharAtCursor() == 'Y');
-        buffer.left(2);
+        buffer.left(2); // abc|dXYefg
         assertTrue(buffer.getCharAtCursor() == 'd');
-        buffer.left(5);
+        buffer.left(3);
         assertTrue(buffer.getCharAtCursor() == 'a');
     }
 
     @Test
     public void right() throws Exception {
+        Exc_1_3_44_TextEditorBuffer buffer = new Exc_1_3_44_TextEditorBuffer();
+        buffer.insert('a');
+        buffer.insert('b');
+        buffer.insert('c');
+        buffer.insert('d');
+        buffer.insert('e');
+        buffer.insert('f');
+        buffer.insert('g');
+        assertTrue(buffer.toString().equals("abcdefg"));
+        buffer.left(7);
+        assertTrue(buffer.getCharAtCursor() == 'a');
+        buffer.right(1);
+        assertTrue(buffer.getCharAtCursor() == 'b');
+        buffer.right(2);
+        assertTrue(buffer.getCharAtCursor() == 'd');
+        buffer.right(3);
+        assertTrue(buffer.getCharAtCursor() == 'g');
 
     }
 

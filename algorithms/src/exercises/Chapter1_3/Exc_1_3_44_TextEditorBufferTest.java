@@ -15,12 +15,12 @@ public class Exc_1_3_44_TextEditorBufferTest {
         buffer.insert('a');
         buffer.insert('b');
         buffer.insert('c');
-        assertTrue(buffer.toString().equals("cba"));
+        assertTrue(buffer.toString().equals("abc"));
         buffer.insert('d');
         buffer.insert('e');
         buffer.insert('f');
         buffer.insert('g');
-        assertTrue(buffer.toString().equals("gfedcba"));
+        assertTrue(buffer.toString().equals("abcdefg"));
     }
 
     @Test
@@ -33,18 +33,21 @@ public class Exc_1_3_44_TextEditorBufferTest {
         buffer.insert('e');
         buffer.insert('f');
         buffer.insert('g');
+        // start with abcdefg
         buffer.left(2);
-        buffer.delete();
+        System.out.println(buffer.delete()); // removes 'f'. cursor now at e, before g
         assertTrue(buffer.toString().equals("abcdeg"));
         buffer.left(4);
+        System.out.println(buffer.getCharAtCursor());
+        buffer.delete();  // removes 'b', cursor now a, before c
+        System.out.println(buffer.getCharAtCursor());
+        assertTrue(buffer.toString().equals("abcdeg"));
         buffer.delete();
-        assertTrue(buffer.toString().equals("acdeg"));
+        assertTrue(buffer.toString().equals("gedc"));
         buffer.delete();
-        assertTrue(buffer.toString().equals("adeg"));
-        buffer.delete();
-        assertTrue(buffer.toString().equals("aeg"));
+        assertTrue(buffer.toString().equals("ged"));
         buffer.right(1);
-        assertTrue(buffer.toString().equals("ae"));
+        assertTrue(buffer.toString().equals("ged"));
     }
 
     @Test

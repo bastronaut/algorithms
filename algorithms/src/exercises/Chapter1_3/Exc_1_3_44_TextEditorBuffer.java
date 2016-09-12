@@ -2,8 +2,6 @@ package exercises.Chapter1_3;
 
 import algorithms.CustomStackArray;
 
-import java.util.EmptyStackException;
-
 /**
  1.3.44 Text editor buffer. Develop a data type for a buffer in a text
  editor that implements the following API:
@@ -29,49 +27,57 @@ import java.util.EmptyStackException;
  */
 public class Exc_1_3_44_TextEditorBuffer {
 
-    private CustomStackArray<Character> firstBuffer = new CustomStackArray<>(3); // arbitrary initial size
-    private CustomStackArray<Character> secondBuffer = new CustomStackArray<>(3);
+    private CustomStackArray<Character> firstStack = new CustomStackArray<>(3); // arbitrary initial size
+    private CustomStackArray<Character> secondStack = new CustomStackArray<>(3);
 
 
     public void insert(char c) {
-        firstBuffer.push(c);
+        firstStack.push(c);
     }
 
-    // think about the deletion when the stack is empty..
-    // exception will be thrown, TODO: handle exception
+    // the deletion will work as a backspace?
     public char delete()  {
-        return firstBuffer.pop();
+        return firstStack.pop();
     }
 
 
     public void left(int k) {
-        secondBuffer.push(firstBuffer.pop());
+        for (int i = 0; i < k; i++) {
+            secondStack.push(firstStack.pop());
+        }
     }
 
     // if k is larger than the remaining items to the right of it, .. what to do
     public void right(int k) {
-        firstBuffer.push(secondBuffer.pop());
+        firstStack.push(secondStack.pop());
     }
 
     public int size() {
-        return firstBuffer.size() + secondBuffer.size();
+        return firstStack.size() + secondStack.size();
     }
 
     public char getCharAtCursor() {
-        char returnChar = firstBuffer.pop();
-        firstBuffer.push(returnChar);
+        char returnChar = firstStack.pop();
+        firstStack.push(returnChar);
         return returnChar;
     }
 
-    // the stack is printed in LIFO order
+    // although we're using a stack, the buffer should print
+    // in FIFO order, as if its a text editor. The firstStack
+    // is in LIFO order, so uses a temp stack to reverse it.
     public String toString() {
+        CustomStackArray<Character> tempStack = new CustomStackArray<>(3); // arbitrary initial size
         StringBuilder sb = new StringBuilder();
-        for (char c : firstBuffer) {
-            sb.append(c);
+        for (char c : firstStack) {
+            tempStack.push(c);
         }
-        for (char d : secondBuffer) {
+        for (char d : tempStack) {
             sb.append(d);
         }
+        for (char e : secondStack) {
+            sb.append(e);
+        }
+
         return sb.toString();
     }
 

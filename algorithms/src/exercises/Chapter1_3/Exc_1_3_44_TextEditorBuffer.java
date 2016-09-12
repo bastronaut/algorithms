@@ -58,7 +58,14 @@ public class Exc_1_3_44_TextEditorBuffer {
 
     // if k is larger than the remaining items to the right of it, .. what to do
     public void right(int k) {
-        firstStack.push(secondStack.pop());
+        for (int i = 0; i < k; i++) {
+            if (secondStack.size() == 0 ) {
+                throw new RuntimeException("Cursor is at end of buffer");
+            } else {
+                firstStack.push(secondStack.pop());
+            }
+        }
+
     }
 
     public int size() {

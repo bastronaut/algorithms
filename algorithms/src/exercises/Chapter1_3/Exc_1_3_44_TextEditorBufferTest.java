@@ -87,13 +87,14 @@ public class Exc_1_3_44_TextEditorBufferTest {
         buffer.insert('f');
         buffer.insert('g');
         assertTrue(buffer.toString().equals("abcdefg"));
-        buffer.left(7);
+        buffer.left(7); // |abcdefg
         assertTrue(buffer.getCharAtCursor() == 'a');
-        buffer.right(1);
+        buffer.right(1); // a|bcdefg
         assertTrue(buffer.getCharAtCursor() == 'b');
-        buffer.right(2);
+        buffer.right(2); // abc|defg
+        System.out.println(buffer.getCharAtCursor());
         assertTrue(buffer.getCharAtCursor() == 'd');
-        buffer.right(3);
+        buffer.right(3); // abcdef|g
         assertTrue(buffer.getCharAtCursor() == 'g');
 
     }

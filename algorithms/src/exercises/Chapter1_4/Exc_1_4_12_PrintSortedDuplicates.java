@@ -15,6 +15,7 @@ public class Exc_1_4_12_PrintSortedDuplicates {
         this.secondArray = secondArray;
     }
 
+    // we can do a binary search for the 2nd element?
     public String printSortedDoubles() {
         return "";
     }

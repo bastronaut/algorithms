@@ -1,5 +1,7 @@
 package exercises.Chapter1_3;
 
+import algorithms.CustomStackArray;
+
 /**
  1.3.44 Text editor buffer. Develop a data type for a buffer in a text
  editor that implements the following API:
@@ -13,58 +15,90 @@ package exercises.Chapter1_3;
  int size() number of characters in the buffer
  API for a text buffer
 
- The assignment wants to use two stacks for this. Probably also
- a good (better?) idea to implement this with a single doubly Linked List, as
- the main operations (insert and delete) can run in constant time..
- However, accessing (left(k) / right(k) ) with a LL will be slower
+ Two stacks will be good for this: when you move the cursor left, pop it from the first stack
+ and push it onto the second. When you move right, you pop it from the second stack, and push
+ it back onto the first!
 
- Instead, will do this with Array because excercise seems to want it to?
+ When you want to insert, we simply push on top of the first stack. To get the char at cursor,
+ we pop from the stack, get the item, push it back onto the stack, and return the item.
+
+
+
  */
 public class Exc_1_3_44_TextEditorBuffer {
 
-    private char[] buffer = new char[3];
-    private int cursor;
+    private CustomStackArray<Character> firstStack = new CustomStackArray<>(3); // arbitrary initial size
+    private CustomStackArray<Character> secondStack = new CustomStackArray<>(3);
+
 
     public void insert(char c) {
-        if (cursor == buffer.length-1) {
-            enlargeBuffer(buffer.length * 2);
+        firstStack.push(c);
+    }
+
+    // will function as a 'delete' in a text editor (so not a backspace)
+    // ab|c , where | is the cursor, c will be deleted
+    public char delete()  {
+        if (secondStack.size() == 0) {
+            throw new RuntimeException("cursor is at end of buffer");
+        } else {
+            return secondStack.pop();
         }
-        // does the insert operation remove the character at the location, or insert + push all elements
-        // in front to another place? probably removes it... in which case its not per se faster with a linked list
-
     }
 
-    public char delete() {
 
-    }
-
-    // if k is larger than the remaining items to the left of it, stick to the first element
     public void left(int k) {
-
+        for (int i = 0; i < k; i++) {
+            if (firstStack.size() == 0) {
+                throw new RuntimeException("Cursor is at end of buffer");
+            } else {
+                secondStack.push(firstStack.pop());
+            }
+        }
     }
 
     // if k is larger than the remaining items to the right of it, .. what to do
     public void right(int k) {
+        for (int i = 0; i < k; i++) {
+            if (secondStack.size() == 0 ) {
+                throw new RuntimeException("Cursor is at end of buffer");
+            } else {
+                firstStack.push(secondStack.pop());
+            }
+        }
 
     }
 
     public int size() {
-
-    }
-
-    private void enlargeBuffer(int n) {
-        char[] newBuffer = new char[n];
-        for (int i = 0; i < buffer.length; i++) {
-            newBuffer[i] = buffer[i];
-        }
+        return firstStack.size() + secondStack.size();
     }
 
     public char getCharAtCursor() {
-        return buffer[cursor];
+        if (secondStack.size() == 0) {
+            throw new RuntimeException("cursor is at end of buffer");
+        } else {
+            char returnChar = secondStack.pop();
+            secondStack.push(returnChar);
+            return returnChar;
+        }
     }
 
+    // although we're using a stack, the buffer should print
+    // in FIFO order, as if its a text editor. The firstStack
+    // is in LIFO order, so uses a temp stack to reverse it.
     public String toString() {
+        CustomStackArray<Character> tempStack = new CustomStackArray<>(3); // arbitrary initial size
         StringBuilder sb = new StringBuilder();
+        for (char c : firstStack) {
+            tempStack.push(c);
+        }
+        for (char d : tempStack) {
+            sb.append(d);
+        }
+        for (char e : secondStack) {
+            sb.append(e);
+        }
+
+        return sb.toString();
     }
 
 }

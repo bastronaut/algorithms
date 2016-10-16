@@ -82,6 +82,17 @@ public class Exc_1_3_42_CopyStack <Item> {
         Item item;
         Node next;
 
+        public Node() {
+
+        }
+
+        // ALTERNATIVE BETTER AWNSER is to recursively create new nodes
+        // create a copy constructor for a single Node object.
+        public Node(Node x) {
+            item = x.item;
+            if (x.next != null) { next = new Node(x.next);}
+        }
+
         // will only be used for ints for excercise so thisll do
         public String toString() {
             return item.toString();

@@ -35,7 +35,7 @@ public class QuickFind implements  UnionFind {
                 nodeComponents[i] = qComponent;
             }
         }
-
+        n++;
     }
 
     public int find(int p) {

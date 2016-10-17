@@ -10,6 +10,9 @@ package exercises.Chapter1_5;
  *
  */
 public class QuickUnion implements UnionFind {
+
+    private int n;
+
     @Override
     public void union(int p, int q) {
 
@@ -27,6 +30,6 @@ public class QuickUnion implements UnionFind {
 
     @Override
     public int count() {
-        return 0;
+        return n;
     }
 }

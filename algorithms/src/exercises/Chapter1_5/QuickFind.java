@@ -16,9 +16,12 @@ public class QuickFind implements  UnionFind {
     private int n;
     private int[] nodeComponents;
 
-
-    public QuickFind() {
-
+    public QuickFind(int nrOfNodes) {
+        nodeComponents = new int[nrOfNodes];
+        // initialize all nodes to their own components
+        for (int i = 0; i < nrOfNodes; i++) {
+            nodeComponents[i] = i;
+        }
     }
 
     // if p and q do not share the same component, they must be merged. This is done by
@@ -49,4 +52,6 @@ public class QuickFind implements  UnionFind {
     public int count() {
         return n;
     }
+
 }
+

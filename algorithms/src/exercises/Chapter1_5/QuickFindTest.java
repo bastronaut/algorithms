@@ -11,6 +11,7 @@ public class QuickFindTest {
     public void testQF() {
         //test case:
         QuickFind qf = new QuickFind(10);
+        // already connected nodes: {8,9} , {1, 0}
         int[][] pairs = new int[][]{{4, 3},{3, 8}, {6,5}, {9,4}, {2,1}, {8, 9},{5,0}, {7,2}, {6,1}, {1,0}, {6,7}};
         // the test: do not print out the pair if it is connected.
         for (int[] pair : pairs) {

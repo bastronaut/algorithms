@@ -29,7 +29,7 @@ public class QuickUnion implements UnionFind {
 
     @Override
     public void union(int p, int q) {
-
+        nodeComponents[p] = find(q);
     }
 
     // search for the root node recursively

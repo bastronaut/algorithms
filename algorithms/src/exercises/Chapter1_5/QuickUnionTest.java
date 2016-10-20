@@ -3,12 +3,12 @@ package exercises.Chapter1_5;
 import static org.junit.Assert.*;
 
 /**
- * Created by Bas on 18-10-2016.
+ * Created by BSijtsma on 20-10-2016.
  */
-public class QuickFindTest {
+public class QuickUnionTest {
 
     @org.junit.Test
-    public void testQF() {
+    public void testQU() {
         //test case:
         QuickFind qf = new QuickFind(10);
         // already connected nodes: {8,9} , {1, 0}

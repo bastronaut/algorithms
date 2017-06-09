@@ -1,4 +1,4 @@
-package algorithms;
+package datastructures;
 
 import java.util.EmptyStackException;
 import java.util.Iterator;

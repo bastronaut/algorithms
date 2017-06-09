@@ -1,7 +1,5 @@
 package exercises.Chapter1_3;
 
-import algorithms.CustomQueueLinkedList;
-
 import java.util.EmptyStackException;
 
 import static org.junit.Assert.*;

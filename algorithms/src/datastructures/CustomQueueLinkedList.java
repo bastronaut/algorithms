@@ -1,4 +1,4 @@
-package algorithms;
+package datastructures;
 
 import java.util.Iterator;
 

@@ -1,4 +1,6 @@
-package algorithms;
+package datastructures;
+
+
 
 import java.util.EmptyStackException;
 
@@ -6,12 +8,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by BSijtsma on 21-07-2016.
+ * Created by BSijtsma on 12-07-2016.
  */
-public class CustomQueueLinkedListTest {
+public class CustomQueueArrayTest {
+
     @org.junit.Test
     public void testEnqueue() {
-        CustomQueueLinkedList<String> stacktest = new CustomQueueLinkedList<>();
+        CustomQueueArray<String> stacktest = new CustomQueueArray<>(5);
         assertTrue(stacktest.size() == 0);
         stacktest.enqueue("hi");
         stacktest.enqueue("there");
@@ -30,7 +33,7 @@ public class CustomQueueLinkedListTest {
 
     @org.junit.Test
     public void testDequeue() {
-        CustomQueueLinkedList<String> stacktest = new CustomQueueLinkedList<>();
+        CustomQueueArray<String> stacktest = new CustomQueueArray<>(5);
         stacktest.enqueue("hi");
         assertTrue(stacktest.dequeue() == "hi");
         assertTrue(stacktest.size() == 0);
@@ -47,9 +50,9 @@ public class CustomQueueLinkedListTest {
         assertTrue(stacktest.isEmpty());
     }
 
-    @org.junit.Test(expected = NullPointerException.class)
+    @org.junit.Test(expected = EmptyStackException.class)
     public void testEmptyStack() {
-        CustomQueueLinkedList<String> stacktest = new CustomQueueLinkedList<>();
+        CustomQueueArray<String> stacktest = new CustomQueueArray<>(5);
         stacktest.dequeue();
         stacktest.enqueue("hi");
         stacktest.dequeue();
@@ -58,7 +61,7 @@ public class CustomQueueLinkedListTest {
 
     @org.junit.Test
     public void testForEach() {
-        CustomQueueLinkedList<String> queue = new CustomQueueLinkedList<>();
+        CustomQueueArray<String> queue = new CustomQueueArray<>(5);
         queue.enqueue("hi");
         queue.enqueue("how");
         queue.enqueue("are");

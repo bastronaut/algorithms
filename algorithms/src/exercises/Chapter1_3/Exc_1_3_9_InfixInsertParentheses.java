@@ -1,6 +1,6 @@
 package exercises.Chapter1_3;
 
-import algorithms.CustomStackLinkedList;
+import datastructures.CustomStackLinkedList;
 
 /**
  * Write a program that takes from standard input an expression without left

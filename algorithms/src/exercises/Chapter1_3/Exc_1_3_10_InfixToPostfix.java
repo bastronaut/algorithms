@@ -1,6 +1,6 @@
 package exercises.Chapter1_3;
 
-import algorithms.CustomStackLinkedList;
+import datastructures.CustomStackLinkedList;
 
 /**
  * Write a ﬁlter InfixToPostfix that converts an arithmetic expression from inﬁx to postﬁx.

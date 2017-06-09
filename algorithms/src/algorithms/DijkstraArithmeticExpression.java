@@ -1,6 +1,6 @@
 package algorithms;
 
-import algorithms.CustomStackLinkedList;
+import datastructures.CustomStackLinkedList;
 
 /**
  * Implementation of Dijkstra's algorithm that can compute arithmetic expressions

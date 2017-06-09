@@ -1,6 +1,6 @@
 package exercises.Chapter1_3;
 
-import algorithms.CustomStackArray;
+import datastructures.CustomStackArray;
 
 /**
  1.3.44 Text editor buffer. Develop a data type for a buffer in a text
